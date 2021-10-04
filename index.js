@@ -24,9 +24,9 @@ let createWindow = () => {
 	// Create the browser window.
 	mainWindow = new BrowserWindow({
 		show: false,
-		width: 1300, height: 690,
-		minHeight: 710,
-		minWidth: 1300,
+		width: 1300, height: 700,
+		minHeight: 700,
+		minWidth: 600,
 		webPreferences: {
 			nodeIntegration: true,
 			enableRemoteModule: true,

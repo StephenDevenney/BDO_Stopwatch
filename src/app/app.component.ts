@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Settings } from '../server/src/settings';
 import { TheDb } from '../server/src/thedb';
@@ -6,6 +6,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { Menu, MenuItemConstructorOptions, OpenDialogOptions, remote, OpenDialogSyncOptions, SaveDialogSyncOptions } from 'electron';
 import { Title } from '@angular/platform-browser';
+import { ViewportService } from './shared/services/viewport.service';
 
 @Component({
   selector: 'app-root',
@@ -14,10 +15,12 @@ import { Title } from '@angular/platform-browser';
 export class AppComponent {
   public title = 'BDO Timer';
   public isLoaded = false;
+  public innerWidth: any;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private titleService: Title) {
+              private titleService: Title,
+              private viewportService: ViewportService) {
 
         Settings.initialize();
         if (fs.existsSync(Settings.dbPath)) {
@@ -81,11 +84,18 @@ export class AppComponent {
         .catch((reason) => {
             console.log(reason);
         });
-  }
+    }
 
-  public async loadApplication() {
-    this.titleService.setTitle(this.title);
-    this.isLoaded = true;
-    this.router.navigate(["content"]);
-  }
+    public async loadApplication() {
+        this.titleService.setTitle(this.title);
+        this.isLoaded = true;
+        this.viewportService.loadViewport();
+        await this.router.navigate(["content"]);
+    }
+
+    @HostListener('window:resize', ['$event'])
+    public onResize(event: any) {
+        this.innerWidth = window.innerWidth;
+        this.viewportService.determineViewport(window.innerWidth, window.innerHeight);
+    }
 }

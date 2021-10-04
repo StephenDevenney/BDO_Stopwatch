@@ -11,6 +11,8 @@ import { APIInterceptor } from './shared/classes/api.interceptor';
 import { LoadingService } from './shared/services/loading.service';
 import { NgxUiLoaderModule, NgxUiLoaderConfig, POSITION, SPINNER, PB_DIRECTION } from 'ngx-ui-loader';
 import { ContentModule } from './modules/content/content.module';
+import { ViewportService } from './shared/services/viewport.service';
+import { ActiveViewport } from './shared/classes/activeViewport';
 
 /*
   bgs = bottomRight Small loader
@@ -52,7 +54,9 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
       useClass: APIInterceptor,
       multi: true,
     },
-    LoadingService
+    LoadingService,
+    ActiveViewport,
+    ViewportService
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
