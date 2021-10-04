@@ -1,0 +1,11 @@
+<ngx-ui-loader></ngx-ui-loader>
+<div *ngIf="isLoaded">
+  <div class="app-container">
+    <div class="app-main-container">
+      <div class="app-router">
+        <router-outlet></router-outlet>
+      </div> 
+    </div>
+  </div>
+</div>
+<p-toast position="top-center"></p-toast> 
