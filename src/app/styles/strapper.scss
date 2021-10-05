@@ -2,6 +2,7 @@
     # Dimensions
         ## Height
         ## Width
+        ## Height & Width
     # Overflow
     # Button
     # Pointer
@@ -27,6 +28,17 @@
 
 .w-50 {
     width: 50%;
+}
+
+// ## Height & Width
+.wh-100 {
+    width: 100%;
+    height: 100%;
+}
+
+.wh-50 {
+    width: 50%;
+    height: 50%;
 }
 
 // # Overflow

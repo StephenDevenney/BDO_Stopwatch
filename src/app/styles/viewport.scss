@@ -22,7 +22,7 @@
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
 
-    .grid-item-container:first-of-type {
+    .grid-item-container:first-child {
         border-right: 8px solid #5484BC;
     }
 }
@@ -32,7 +32,7 @@
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr;
 
-    .grid-item-container:first-of-type {
+    .grid-item-container:first-child {
         border-bottom: 8px solid #5484BC;
     }
 }

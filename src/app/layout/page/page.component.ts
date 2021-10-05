@@ -1,4 +1,4 @@
-import { Component, ContentChild, ElementRef, Injector, OnInit, ViewChild } from '@angular/core';
+import { Component, Injector, OnInit } from '@angular/core';
 import { ActiveViewport } from 'src/app/shared/classes/activeViewport';
 import { BaseComponent } from 'src/app/shared/components/base.component';
 
@@ -7,8 +7,6 @@ import { BaseComponent } from 'src/app/shared/components/base.component';
   templateUrl: './page.component.html'
 })
 export class PageComponent extends BaseComponent implements OnInit {
-  
-  @ViewChild("pageContent") content!: ElementRef;
 
   constructor(private injector: Injector,
               public activeViewport: ActiveViewport) { super(injector); }

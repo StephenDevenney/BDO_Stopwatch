@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ContentComponent } from './modules/content/content-page/content.component';
+import { PageComponent } from './layout/page/page.component';
 
 const routes: Routes = [
-  { path: 'content', component: ContentComponent, data: {page: 'content'} },
+  { path: 'content', component: PageComponent, data: {page: 'content'} },
   { path: '**', redirectTo:'content', data: {page: 'content'} }
 ];
 

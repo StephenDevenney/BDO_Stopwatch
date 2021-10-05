@@ -1,5 +1,3 @@
 <div class="page">
-    <div #pageContent [ngClass]="activeViewport.viewport + ' viewport-container h-100'">
-        <ng-content></ng-content>
-    </div>
+    <content [ngClass]="activeViewport.viewport + ' viewport-container h-100'"></content>
 </div>
