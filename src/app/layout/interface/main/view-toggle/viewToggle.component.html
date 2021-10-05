@@ -1,0 +1,4 @@
+<div class="s-center h25">
+   <button class="btn btn-primary mr2" (click)="activeViewport.view = ViewEnum.Stopwatch;" [ngClass]="{ 'selected-view': activeViewport.view === ViewEnum.Stopwatch }">Stopwatch</button>
+   <button class="btn btn-primary" (click)="activeViewport.view = ViewEnum.Overview;" [ngClass]="{ 'selected-view': activeViewport.view === ViewEnum.Overview }">Overview</button>
+</div>

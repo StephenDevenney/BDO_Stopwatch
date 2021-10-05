@@ -1,11 +1,14 @@
 <div [ngClass]="activeViewport.viewport !== ViewportEnum.Small ? 'h100' : 'h75'">
    <div class="s-center h75">
-      button
+      <button *ngIf="stopwatchRunning === false" class="btn btn-no-bg" (click)="startStopwatch();">
+         <icon-start></icon-start>
+      </button>
+      <button *ngIf="stopwatchRunning === true" class="btn btn-no-bg" (click)="stopStopwatch();">
+         <icon-stop></icon-stop>
+      </button>
    </div>
    <div class="s-center h25">
-      counter
+      <label class="stopwatch-time mb4">{{ time | stopwatch }}</label>
    </div>
 </div>
-<div *ngIf="activeViewport.viewport === ViewportEnum.Small" class="s-center h25">
-   button group
-</div>
+<view-toggle *ngIf="activeViewport.viewport === ViewportEnum.Small"></view-toggle>

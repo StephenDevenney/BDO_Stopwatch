@@ -1,7 +1,3 @@
 
-<stopwatch class="grid-item-container"></stopwatch>
-<div *ngIf="ViewportEnum.Small !== this.activeViewport.viewport" class="grid-item-container">
-   <div>
-      Overview
-   </div>
-</div>
+<stopwatch [hidden]="activeViewport.viewport === ViewportEnum.Small && activeViewport.view === ViewEnum.Overview" class="grid-item-container"></stopwatch>
+<overview [hidden]="activeViewport.viewport === ViewportEnum.Small && activeViewport.view === ViewEnum.Stopwatch" class="grid-item-container"></overview>

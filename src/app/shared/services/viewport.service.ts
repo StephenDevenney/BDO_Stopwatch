@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActiveViewport } from '../classes/activeViewport';
+import { ViewEnum } from '../classes/viewEnum';
 import { ViewportEnum } from '../classes/viewportEnum';
 
 @Injectable()
@@ -7,6 +8,7 @@ export class ViewportService {
     constructor(private activeViewport: ActiveViewport){}
 
     public loadViewport() {
+        this.activeViewport.view = ViewEnum.Stopwatch;
         let vp: ViewportEnum = this.getViewport() as ViewportEnum;
         if(vp != null)
             this.updateViewport(vp);

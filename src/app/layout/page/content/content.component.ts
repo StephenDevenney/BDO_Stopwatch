@@ -1,4 +1,5 @@
 import { Component, Injector, OnInit } from '@angular/core';
+import { ViewEnum } from '../../../shared/classes/viewEnum';
 import { ActiveViewport } from '../../../shared/classes/activeViewport';
 import { ViewportEnum } from '../../../shared/classes/viewportEnum';
 import { BaseComponent } from '../../../shared/components/base.component';
@@ -22,5 +23,9 @@ export class ContentComponent extends BaseComponent implements OnInit {
 
   public get ViewportEnum() {
     return ViewportEnum; 
+  }
+
+  public get ViewEnum() {
+    return ViewEnum; 
   }
 }
