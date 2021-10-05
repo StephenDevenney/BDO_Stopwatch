@@ -1,8 +1,11 @@
-<div *ngIf="isLoaded">
-   <div class="wh-100">
+<div [ngClass]="activeViewport.viewport !== ViewportEnum.Small ? 'h100' : 'h75'">
+   <div class="s-center h75">
       button
    </div>
-   <div class="wh-100">
+   <div class="s-center h25">
       counter
    </div>
+</div>
+<div *ngIf="activeViewport.viewport === ViewportEnum.Small" class="s-center h25">
+   button group
 </div>

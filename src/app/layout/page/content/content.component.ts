@@ -1,7 +1,7 @@
 import { Component, Injector, OnInit } from '@angular/core';
-import { ActiveViewport } from 'src/app/shared/classes/activeViewport';
-import { ViewportEnum } from 'src/app/shared/classes/viewportEnum';
-import { BaseComponent } from 'src/app/shared/components/base.component';
+import { ActiveViewport } from '../../../shared/classes/activeViewport';
+import { ViewportEnum } from '../../../shared/classes/viewportEnum';
+import { BaseComponent } from '../../../shared/components/base.component';
 
 @Component({
   selector: 'content',

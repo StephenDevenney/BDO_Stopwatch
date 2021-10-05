@@ -13,32 +13,58 @@
 // # Dimensions
 
 // ## Height
-.h-100 {
+.h100 {
     height: 100%;
 }
 
-.h-50 {
+.h75 {
+    height: 75%;
+}
+
+.h50 {
     height: 50%;
+}
+
+.h25 {
+    height: 25%;
 }
 
 // ## Width
-.w-100 {
+.w100 {
     width: 100%;
 }
 
-.w-50 {
+.w75 {
+    width: 75%;
+}
+
+.w50 {
     width: 50%;
 }
 
+.w25 {
+    width: 25%;
+}
+
 // ## Height & Width
-.wh-100 {
+.wh100 {
     width: 100%;
     height: 100%;
 }
 
-.wh-50 {
+.wh75 {
+    width: 75%;
+    height: 75%;
+}
+
+.wh50 {
     width: 50%;
     height: 50%;
+}
+
+.wh25 {
+    width: 25%;
+    height: 25%;
 }
 
 // # Overflow
@@ -81,7 +107,7 @@
     font-size: 1rem;
     line-height: 1.5;
     border-radius: 3px;
-    transition: color $transition-150 ease-in-out, background-color $transition-150 ease-in-out, border-color $transition-150 ease-in-out, box-shadow $transition-150 ease-in-out;
+    transition: color 150ms ease-in-out, background-color 150ms ease-in-out, border-color 150ms ease-in-out, box-shadow 150ms ease-in-out;
 
     .block-text {
         display: inline-block;
