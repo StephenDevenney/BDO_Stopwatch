@@ -1,9 +1,10 @@
 'use strict';
 // // Electron
 const { app, BrowserWindow, ipcMain } = require('electron');
+const windowStateKeeper = require('electron-window-state');
 const path = require('path');
 let waitBeforeClose = true;
-let mainWindow
+let mainWindow;
 const devMode = /electron/.test(path.basename(app.getPath('exe'), '.exe'));
 
 if (devMode) {
@@ -21,21 +22,30 @@ if (devMode) {
 }
 
 let createWindow = () => {
+	// Window State Keeper
+	let mainWindowState = windowStateKeeper({
+		defaultWidth: 1300,
+		defaultHeight: 700
+	});
+
 	// Create the browser window.
 	mainWindow = new BrowserWindow({
 		show: false,
-		width: 1300, height: 700,
-		minHeight: 700,
-		minWidth: 600,
+		x: mainWindowState.x, y: mainWindowState.y,
+		width: mainWindowState.width, height: mainWindowState.height,
+		minHeight: 700, minWidth: 600,
 		webPreferences: {
 			nodeIntegration: true,
 			enableRemoteModule: true,
 			contextIsolation: false,
 		}
 	});
+
+	mainWindowState.manage(mainWindow);
+
 	mainWindow.once('ready-to-show', () => {
 		mainWindow.show();
-		// mainWindow.removeMenu();
+		mainWindow.removeMenu();
 	});
 
 	// and load the index.html of the app.

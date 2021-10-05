@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Settings } from '../server/src/settings';
 import { TheDb } from '../server/src/thedb';
@@ -13,11 +13,11 @@ import { ViewportService } from './shared/services/viewport.service';
   templateUrl: './app.component.html'
 })
 export class AppComponent {
-  public title = 'BDO Timer';
-  public isLoaded = false;
-  public innerWidth: any;
+    public title = 'BDO Timer';
+    public isLoaded = false;
+    public innerWidth: any;
 
-  constructor(private route: ActivatedRoute,
+    constructor(private route: ActivatedRoute,
               private router: Router,
               private titleService: Title,
               private viewportService: ViewportService) {
@@ -30,13 +30,16 @@ export class AppComponent {
         } else {
             this.createDb();
         }
+    }
 
-        // console.log(remote.app.getPath('userData'));
-        
-  }
+    @HostListener('window:resize', ['$event'])
+    public onResize(event: any) {
+        this.innerWidth = window.innerWidth;
+        this.viewportService.determineViewport(window.innerWidth, window.innerHeight);
+    }
 
-  public openDb(filename: string) {
-    TheDb.openDb(filename)
+    public openDb(filename: string) {
+        TheDb.openDb(filename)
         .then(() => {
             if (!Settings.hasFixedDbLocation) {
                 Settings.dbPath = filename;
@@ -50,28 +53,28 @@ export class AppComponent {
             // Handle errors
             console.log('Error occurred while opening database: ', reason);
         });
-  }
-
-  public async createDb(filename?: string) {
-    if (!filename) {
-        const options: SaveDialogSyncOptions = {
-            title: 'Create file',
-            defaultPath: remote.app.getPath('documents'),
-            filters: [
-                {
-                    name: 'Database',
-                    extensions: ['db'],
-                },
-            ],
-        };
-        filename = remote.dialog.showSaveDialogSync(remote.getCurrentWindow(), options);
     }
 
-    if (!filename) {
-        return;
-    }
+    public async createDb(filename?: string) {
+        if (!filename) {
+            const options: SaveDialogSyncOptions = {
+                title: 'Create file',
+                defaultPath: remote.app.getPath('documents'),
+                filters: [
+                    {
+                        name: 'Database',
+                        extensions: ['db'],
+                    },
+                ],
+            };
+            filename = remote.dialog.showSaveDialogSync(remote.getCurrentWindow(), options);
+        }
 
-    TheDb.createDb(filename)
+        if (!filename) {
+            return;
+        }
+
+        TheDb.createDb(filename)
         .then((dbPath) => {
             if (!Settings.hasFixedDbLocation) {
                 Settings.dbPath = dbPath;
@@ -88,14 +91,8 @@ export class AppComponent {
 
     public async loadApplication() {
         this.titleService.setTitle(this.title);
-        this.isLoaded = true;
         this.viewportService.loadViewport();
+        this.isLoaded = true;
         await this.router.navigate(["content"]);
-    }
-
-    @HostListener('window:resize', ['$event'])
-    public onResize(event: any) {
-        this.innerWidth = window.innerWidth;
-        this.viewportService.determineViewport(window.innerWidth, window.innerHeight);
     }
 }

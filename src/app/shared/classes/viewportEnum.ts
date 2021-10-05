@@ -1,5 +1,5 @@
 export enum ViewportEnum {
-    Small = "Small",
-    Long = "Long",
-    Tall = "Tall"
+    Small = "small",
+    Long = "long",
+    Tall = "tall"
 }

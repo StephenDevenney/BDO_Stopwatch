@@ -1,0 +1,33 @@
+/*
+# Viewport-Container
+# Short
+# Long
+# Tall
+*/
+
+// # Viewport-Container
+.viewport-container {
+    display: grid;
+    grid-column-gap: 0px;
+}
+
+// # Short
+.small {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    background-color: green;
+}
+
+// # Long
+.long {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    background-color: yellow;
+}
+
+// # Tall
+.tall {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    background-color: red;
+}

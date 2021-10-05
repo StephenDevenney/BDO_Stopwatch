@@ -1,3 +1,8 @@
 <page *ngIf="isLoaded">
-   Content page
+   <div>
+      Timer
+   </div>
+   <div *ngIf="ViewportEnum.Small !== this.activeViewport.viewport">
+      Overview
+   </div>
 </page>
