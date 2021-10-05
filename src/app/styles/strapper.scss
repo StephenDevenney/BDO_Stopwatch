@@ -1,0 +1,117 @@
+/*
+    # Dimensions
+        ## Height
+        ## Width
+    # Overflow
+    # Button
+    # Pointer
+    # Position
+    # Flex Container
+*/
+
+// # Dimensions
+
+// ## Height
+.h-100 {
+    height: 100%;
+}
+
+.h-50 {
+    height: 50%;
+}
+
+// ## Width
+.w-100 {
+    width: 100%;
+}
+
+.w-50 {
+    width: 50%;
+}
+
+// # Overflow
+.scroll-container-v {
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    &.scroll-overlay {
+        overflow-y: overlay;
+    }
+}
+
+.scroll-container-v-visible {
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.scroll-container-h {
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    &.scroll-overlay {
+        overflow-x: overlay;
+    }
+}
+
+// # Button
+.btn {
+    display: inline-flex;
+    align-items: center;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    background-color: transparent;
+    border-width: 0.063rem !important;
+    border-style: solid;
+    border-color: transparent;
+    padding: 0.5rem 0.5rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 3px;
+    transition: color $transition-150 ease-in-out, background-color $transition-150 ease-in-out, border-color $transition-150 ease-in-out, box-shadow $transition-150 ease-in-out;
+
+    .block-text {
+        display: inline-block;
+        width: 100%;
+    }
+}
+
+.btn-no-bg {
+    background: transparent !important;
+    border-color: transparent !important;
+}
+
+// # Pointer
+.no-pointer-events {
+    pointer-events: none;
+}
+
+// # Position
+.sticky {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+// # Flex Container
+.s-flex {
+    display: flex;
+}
+
+.s-center-content {
+    display: flex;
+    justify-content: center;
+}
+
+.s-align-center {
+    display: flex;
+    align-items: center;
+}
+
+.s-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+

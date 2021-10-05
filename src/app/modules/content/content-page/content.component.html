@@ -1,8 +1,10 @@
 <page *ngIf="isLoaded">
-   <div>
-      Timer
+   <div class="grid-item-container">
+      timer
    </div>
-   <div *ngIf="ViewportEnum.Small !== this.activeViewport.viewport">
-      Overview
+   <div *ngIf="ViewportEnum.Small !== this.activeViewport.viewport" class="grid-item-container">
+      <div>
+         Overview
+      </div>
    </div>
 </page>

@@ -1,25 +1,30 @@
 @import 'variables.scss';
 @import 'icons.scss';
-@import '../../../node_modules/primeng/resources/primeng.min.css';
-@import '../../../node_modules/primeicons/primeicons.css';
-@import '../../../node_modules/primeng/resources/themes/saga-blue/theme.css';
 @import './viewport.scss';
+@import './strapper.scss';
 
 /*
     # General
+        ## Main
         ## Containers
-        ## Other
     # Fonts
         ## Headers
+        ## Labels
     # Inputs
         ## Input
         ## Buttons
-    # Bootstrap Override
-    # PrimeNG Override
-        ## Popup Overrides
 */
 
 // # General
+
+// ## Main
+body {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: left;
+}
 
 // ## Containers
 .app-router {
@@ -32,44 +37,6 @@
 .page {
     height: 100vh;
     width: 100%;
-}
-
-// ## Other
-.scroll-container-v {
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
-
-    &.scroll-overlay {
-        overflow-y: overlay !important;
-    }
-}
-
-.scroll-container-v-visible {
-    overflow-x: hidden !important;
-    overflow-y: scroll !important;
-}
-
-.scroll-container-h {
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-
-    &.scroll-overlay {
-        overflow-x: overlay !important;
-    }
-}
-
-.no-pointer-events {
-    pointer-events: none;
-}
-
-.sticky {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-:focus {
-    outline: none;
 }
 
 //# Fonts
@@ -93,6 +60,7 @@ h3 {
     line-height: 1.5;
 }
 
+// ## Labels
 label {
     font-size: 1rem;
     line-height: 1;
@@ -119,70 +87,4 @@ input {
     border-width: 0.063rem !important;
     border-style: solid;
     border-radius: 3px;
-}
-
-// ## Buttons
-.btn-mult {
-    .btn {
-        margin: 0 0.5rem;
-    }
-}
-
-.btns-group {
-    display: flex;
-
-    .btn-start {
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-        border-right-width: 0.031rem !important;
-    }
-
-    .btn-end {
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-        border-left-width: 0.047rem !important;
-    }
-}
-
-.btn {
-    display: inline-flex;
-    align-items: center;
-    font-weight: 400;
-    text-align: center;
-    vertical-align: middle;
-    user-select: none;
-    background-color: transparent;
-    border-width: 0.063rem !important;
-    border-style: solid;
-    border-color: transparent;
-    padding: 0.5rem 0.5rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    border-radius: 3px;
-    transition: color $transition-150 ease-in-out, background-color $transition-150 ease-in-out, border-color $transition-150 ease-in-out, box-shadow $transition-150 ease-in-out;
-
-    .block-text {
-        display: inline-block;
-        width: 100%;
-    }
-}
-
-.btn-no-bg {
-    background: transparent !important;
-    border-color: transparent !important;
-}
-
-// # Bootstrap Override
-body {
-    margin: 0;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    text-align: left;
-}
-
-.btn, .btn-dark, .btn-primary, .btn-secondary {
-    &:focus, &.focus, &:not(:disabled):not(.disabled):active:focus, &:not(:disabled):not(.disabled).active:focus, .show > &.dropdown-toggle:focus {
-        box-shadow: none;
-    }
 }

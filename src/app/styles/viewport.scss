@@ -15,19 +15,24 @@
 .small {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
-    background-color: green;
 }
 
 // # Long
 .long {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
-    background-color: yellow;
+
+    .grid-item-container:first-of-type {
+        border-right: 8px solid #5484BC;
+    }
 }
 
 // # Tall
 .tall {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr;
-    background-color: red;
+
+    .grid-item-container:first-of-type {
+        border-bottom: 8px solid #5484BC;
+    }
 }
