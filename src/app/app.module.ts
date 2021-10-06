@@ -13,6 +13,7 @@ import { ViewportService } from './shared/services/viewport.service';
 import { ActiveViewport } from './shared/classes/activeViewport';
 import { InterfaceModule } from './modules/interface.module';
 import { PageModule } from './modules/page.module';
+import { StopwatchService } from './shared/services/stopwatch.service';
 
 /*
   bgs = bottomRight Small loader

@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { StopwatchPipe } from '../pipes/pipes';
+import { StopwatchService } from '../services/stopwatch.service';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { StopwatchPipe } from '../pipes/pipes';
     StopwatchPipe
   ],
   providers: [
-    StopwatchPipe
+    StopwatchPipe,
+    StopwatchService
   ]
 })
 export class SharedModule { 

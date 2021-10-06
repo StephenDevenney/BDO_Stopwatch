@@ -8,7 +8,6 @@
       </button>
    </div>
    <div class="s-center h25">
-      <label class="stopwatch-time mb4">{{ time | stopwatch }}</label>
+      <label class="stopwatch-time" [ngClass]="activeViewport.viewport !== ViewportEnum.Small ? 'mb5' : 'mt5'">{{ time | stopwatch }}</label>
    </div>
 </div>
-<view-toggle *ngIf="activeViewport.viewport === ViewportEnum.Small"></view-toggle>
