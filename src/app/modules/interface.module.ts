@@ -1,4 +1,6 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
+import { ButtonUIComponent } from '../layout/interface/general/button/button.component';
+import { InterfaceEnumService } from '../layout/interface/general/interface-enums/enum.service';
 import { IconStartComponent } from '../layout/interface/icons/start/start.component';
 import { IconStopComponent } from '../layout/interface/icons/stop/stop.component';
 import { OverviewComponent } from '../layout/interface/main/overview/overview.component';
@@ -17,17 +19,19 @@ import { SharedModule } from './sharedModule';
     OverviewComponent,
     ViewToggleComponent,
     IconStartComponent,
-    IconStopComponent
+    IconStopComponent,
+    ButtonUIComponent
   ],
   exports: [
     StopwatchComponent,
     OverviewComponent,
     ViewToggleComponent,
     IconStartComponent,
-    IconStopComponent
+    IconStopComponent,
+    ButtonUIComponent
   ],
   providers: [
-    
+    InterfaceEnumService
   ]
 })
 

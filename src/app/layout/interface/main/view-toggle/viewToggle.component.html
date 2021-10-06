@@ -1,4 +1,4 @@
 <div class="s-center h25">
-   <button class="btn btn-primary mr2" (click)="viewService.currentSmallViewContent = viewService.SmallViewContentEnum.Stopwatch;" [ngClass]="{ 'selected-view': viewService.currentSmallViewContent === viewService.SmallViewContentEnum.Stopwatch }">Stopwatch</button>
-   <button class="btn btn-primary" (click)="viewService.currentSmallViewContent = viewService.SmallViewContentEnum.Overview;" [ngClass]="{ 'selected-view': viewService.currentSmallViewContent === viewService.SmallViewContentEnum.Overview }">Overview</button>
+   <s-button class="mr2" [ngClass]="{ 'selected-view': viewService.currentSmallViewContent === viewService.SmallViewContentEnum.Stopwatch }" [buttonType]="enumUIService.ButtonTypeEnum.Primary" text="Stopwatch" (click)="viewService.currentSmallViewContent = viewService.SmallViewContentEnum.Stopwatch;"></s-button>
+   <s-button [ngClass]="{ 'selected-view': viewService.currentSmallViewContent === viewService.SmallViewContentEnum.Overview }" [buttonType]="enumUIService.ButtonTypeEnum.Primary" text="Overview" (click)="viewService.currentSmallViewContent = viewService.SmallViewContentEnum.Overview;"></s-button>
 </div>

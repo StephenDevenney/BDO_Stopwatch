@@ -1,3 +1,12 @@
-<div class="h100">
-   
-</div>
+
+<span *ngIf="buttonType === enumUIService.ButtonTypeEnum.Icon">
+    <button *ngIf="iconType === enumUIService.ButtonIconEnum.Start" class="btn btn-no-bg" (click)="stopwatch.startStopwatch();">
+        <icon-start></icon-start>
+     </button>
+     <button *ngIf="iconType === enumUIService.ButtonIconEnum.Stop" class="btn btn-no-bg" (click)="stopwatch.stopStopwatch();">
+        <icon-stop></icon-stop>
+     </button>
+</span>
+<span *ngIf="buttonType === enumUIService.ButtonTypeEnum.Primary">
+    <button class="btn btn-primary">{{ text }}</button>
+</span>

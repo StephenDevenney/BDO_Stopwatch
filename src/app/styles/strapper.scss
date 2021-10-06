@@ -5,6 +5,7 @@
         ## Height & Width
     # Overflow
     # Button
+        ## Button Toggle
     # Pointer
     # Position
     # Flex Container
@@ -105,11 +106,6 @@
         font-size: 1.8rem;
         border-radius: 1.8rem;
         transition: color 150ms ease-in-out, background-color 150ms ease-in-out, border-color 150ms ease-in-out, box-shadow 150ms ease-in-out;
-        
-        &.selected-view {
-            border-color: $blue;
-            border-width: 0.8rem;
-        }
     }
 
     &.btn-no-bg {
@@ -124,6 +120,12 @@
     &:focus {
         outline: none;
     }
+}
+
+// ## Button Toggle
+.selected-view .btn.btn-primary {
+    border-color: $blue;
+    border-width: 0.8rem;
 }
 
 // # Pointer
