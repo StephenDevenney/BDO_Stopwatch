@@ -1,11 +1,13 @@
-<div class="h100">
-   <div class="s-center h25">
+<span>
+   <div class="s-center h50">
       <label class="stopwatch-time" [ngClass]="viewService.currentViewport !== viewService.ViewportEnum.Small ? 'mb5' : 'mt5'">{{ stopwatch.elapsedTime | stopwatch }}</label>
    </div>
    <div class="s-center h25">
       <label> dropdown & checkbox</label>
    </div>
-   <div class="s-center h25">
-      <label>button group</label>
+   <div class="h25 s-center">
+      <s-button class="mr1" [buttonType]="enumUIService.ButtonTypeEnum.Primary" text="Add"></s-button>
+      <s-button class="mr1" [buttonType]="enumUIService.ButtonTypeEnum.Primary" text="Clear" (click)="stopwatch.resetStopwatch();"></s-button>
+      <s-button [buttonType]="enumUIService.ButtonTypeEnum.Primary" text="Resume" (click)="stopwatch.startStopwatch();"></s-button>
    </div>
-</div>
+</span>

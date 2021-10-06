@@ -1,5 +1,9 @@
-<div class="page viewport-container h100" [ngClass]="viewService.currentViewport">
+<div *ngIf="stopwatch.checkForAddTime() == false;" class="page viewport-container h100" [ngClass]="viewService.currentViewport">
     <stopwatch [hidden]="viewService.hideStopwatchContentCheck()" class="grid-item-container"></stopwatch>
     <overview [hidden]="viewService.hideOverviewContentCheck()" class="grid-item-container"></overview>
     <view-toggle *ngIf="viewService.smallViewportCheck();"></view-toggle>
+</div>
+
+<div *ngIf="stopwatch.checkForAddTime() == true;" class="page viewport-container h100">
+    <add-time></add-time>
 </div>

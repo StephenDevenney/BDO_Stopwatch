@@ -28,4 +28,11 @@ export class StopwatchService {
         this.stopStopwatch();
         this.elapsedTime = 0;
     }
+
+    public checkForAddTime(): boolean {
+        if(this.elapsedTime > 0 && this.isRunning == false)
+            return true
+        else
+            return false
+    }
 }

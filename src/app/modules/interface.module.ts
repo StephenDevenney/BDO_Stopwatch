@@ -3,6 +3,7 @@ import { ButtonUIComponent } from '../layout/interface/general/button/button.com
 import { InterfaceEnumService } from '../layout/interface/general/interface-enums/enum.service';
 import { IconStartComponent } from '../layout/interface/icons/start/start.component';
 import { IconStopComponent } from '../layout/interface/icons/stop/stop.component';
+import { AddTimeComponent } from '../layout/interface/main/add-time/addTime.component';
 import { OverviewComponent } from '../layout/interface/main/overview/overview.component';
 import { StopwatchComponent } from '../layout/interface/main/stopwatch/stopwatch.component';
 import { ViewToggleComponent } from '../layout/interface/main/view-toggle/viewToggle.component';
@@ -18,6 +19,7 @@ import { SharedModule } from './sharedModule';
     StopwatchComponent,
     OverviewComponent,
     ViewToggleComponent,
+    AddTimeComponent,
     IconStartComponent,
     IconStopComponent,
     ButtonUIComponent
@@ -26,6 +28,7 @@ import { SharedModule } from './sharedModule';
     StopwatchComponent,
     OverviewComponent,
     ViewToggleComponent,
+    AddTimeComponent,
     IconStartComponent,
     IconStopComponent,
     ButtonUIComponent
