@@ -1,26 +1,26 @@
-import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, HostListener, Injector } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Settings } from '../server/src/settings';
 import { TheDb } from '../server/src/thedb';
 import * as fs from 'fs';
-import * as path from 'path';
-import { Menu, MenuItemConstructorOptions, OpenDialogOptions, remote, OpenDialogSyncOptions, SaveDialogSyncOptions } from 'electron';
+import { remote, SaveDialogSyncOptions } from 'electron';
 import { Title } from '@angular/platform-browser';
-import { ViewportService } from './shared/services/viewport.service';
+import { BaseComponent } from './shared/components/base.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html'
 })
-export class AppComponent {
-    public title = 'BDO Timer';
+export class AppComponent extends BaseComponent {
+    public title = 'BDO Stopwatch';
     public isLoaded = false;
     public innerWidth: any;
 
-    constructor(private route: ActivatedRoute,
-              private router: Router,
-              private titleService: Title,
-              private viewportService: ViewportService) {
+    constructor(private injector: Injector,
+                private route: ActivatedRoute,
+                private titleService: Title) {
+
+        super(injector);
 
         Settings.initialize();
         if (fs.existsSync(Settings.dbPath)) {
@@ -35,7 +35,7 @@ export class AppComponent {
     @HostListener('window:resize', ['$event'])
     public onResize(event: any) {
         this.innerWidth = window.innerWidth;
-        this.viewportService.determineViewport(window.innerWidth, window.innerHeight);
+        this.viewService.determineViewport(window.innerWidth, window.innerHeight);
     }
 
     public openDb(filename: string) {
@@ -91,8 +91,8 @@ export class AppComponent {
 
     public async loadApplication() {
         this.titleService.setTitle(this.title);
-        this.viewportService.loadViewport();
+        this.viewService.loadViewport();
         this.isLoaded = true;
-        await this.router.navigate(["content"]);
+        await this.router.navigate(["page"]);
     }
 }

@@ -1,14 +1,19 @@
 import { Injectable } from '@angular/core';
-import { ActiveViewport } from '../classes/activeViewport';
-import { ViewEnum } from '../classes/viewEnum';
+import { SmallViewContentEnum } from '../classes/smallViewContentEnum';
 import { ViewportEnum } from '../classes/viewportEnum';
 
 @Injectable()
-export class ViewportService {
-    constructor(private activeViewport: ActiveViewport){}
+export class ViewService {
+    public currentViewport: ViewportEnum;
+    public currentSmallViewContent: SmallViewContentEnum;
 
+    constructor(){}
+
+    /*
+        Views
+    */
     public loadViewport() {
-        this.activeViewport.view = ViewEnum.Stopwatch;
+        this.currentSmallViewContent = SmallViewContentEnum.Stopwatch;
         let vp: ViewportEnum = this.getViewport() as ViewportEnum;
         if(vp != null)
             this.updateViewport(vp);
@@ -21,7 +26,7 @@ export class ViewportService {
     }
 
     public updateViewport(viewport: ViewportEnum) {
-        this.activeViewport.viewport = viewport;
+        this.currentViewport = viewport;
         localStorage.removeItem("viewport");
         localStorage.setItem("viewport", viewport);
     }
@@ -38,7 +43,18 @@ export class ViewportService {
         else
             newViewport = ViewportEnum.Long;
 
-        if(this.activeViewport.viewport != newViewport)
+        if(this.currentViewport != newViewport)
             this.updateViewport(newViewport);
+    }
+
+    /*
+        Enums
+    */
+    public get ViewportEnum() {
+        return ViewportEnum; 
+    }
+
+    public get SmallViewContentEnum() {
+        return SmallViewContentEnum; 
     }
 }

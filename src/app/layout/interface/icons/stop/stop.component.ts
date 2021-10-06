@@ -6,14 +6,12 @@ import { BaseComponent } from 'src/app/shared/components/base.component';
   templateUrl: './stop.component.html'
 })
 export class IconStopComponent extends BaseComponent implements OnInit {
-  
-  public isLoaded: boolean = false;
 
   constructor(private injector: Injector) {
     super(injector);
   }
 
   ngOnInit(): void {
-    this.isLoaded = true;
+    
   }
 }

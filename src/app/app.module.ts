@@ -5,15 +5,11 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RedirectToComponent } from './shared/components/redirect-to/redirectTo.component';
-import { SharedModule } from './shared/modules/sharedModule';
 import { APIInterceptor } from './shared/classes/api.interceptor';
-import { LoadingService } from './shared/services/loading.service';
 import { NgxUiLoaderModule, NgxUiLoaderConfig, POSITION, SPINNER, PB_DIRECTION } from 'ngx-ui-loader';
-import { ViewportService } from './shared/services/viewport.service';
-import { ActiveViewport } from './shared/classes/activeViewport';
 import { InterfaceModule } from './modules/interface.module';
 import { PageModule } from './modules/page.module';
-import { StopwatchService } from './shared/services/stopwatch.service';
+import { SharedModule } from './modules/sharedModule';
 
 /*
   bgs = bottomRight Small loader
@@ -54,10 +50,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
       provide: HTTP_INTERCEPTORS,
       useClass: APIInterceptor,
       multi: true,
-    },
-    LoadingService,
-    ActiveViewport,
-    ViewportService
+    }
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

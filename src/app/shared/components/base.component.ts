@@ -2,18 +2,18 @@ import { inject, Injector } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { LoadingService } from '../services/loading.service';
-import { ActiveViewport } from '../classes/activeViewport';
 import { StopwatchService } from '../services/stopwatch.service';
+import { ViewService } from '../services/view.service';
 
 export class BaseComponent {
     public location: Location;
     public router: Router;
     public loader: LoadingService;
-    public viewHandler: ActiveViewport;
     public stopwatch: StopwatchService;
+    public viewService: ViewService;
 
     constructor(injector: Injector) {
-        this.viewHandler = injector.get(ActiveViewport);
+        this.viewService = injector.get(ViewService);
         this.stopwatch = injector.get(StopwatchService);
         this.location = injector.get(Location);
         this.router = injector.get(Router);

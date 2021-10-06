@@ -1,5 +1,4 @@
 import { Component, Injector, OnInit } from '@angular/core';
-import { ActiveViewport } from 'src/app/shared/classes/activeViewport';
 import { BaseComponent } from 'src/app/shared/components/base.component';
 
 @Component({
@@ -8,15 +7,9 @@ import { BaseComponent } from 'src/app/shared/components/base.component';
 })
 export class PageComponent extends BaseComponent implements OnInit {
 
-  constructor(private injector: Injector,
-              public activeViewport: ActiveViewport) { super(injector); }
+  constructor(private injector: Injector) { super(injector); }
 
   ngOnInit(): void {
 
   }
-
-  ngAfterViewInit(): void {
-    
-  }
-
 }

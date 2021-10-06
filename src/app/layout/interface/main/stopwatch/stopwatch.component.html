@@ -1,4 +1,4 @@
-<div [ngClass]="viewHandler.viewport !== ViewportEnum.Small ? 'h100' : 'h75'">
+<div [ngClass]="viewService.currentViewport !== viewService.ViewportEnum.Small ? 'h100' : 'h75'">
    <div class="s-center h75">
       <button *ngIf="stopwatch.isRunning === false" class="btn btn-no-bg" (click)="stopwatch.startStopwatch();">
          <icon-start></icon-start>
@@ -8,6 +8,6 @@
       </button>
    </div>
    <div class="s-center h25">
-      <label class="stopwatch-time" [ngClass]="viewHandler.viewport !== ViewportEnum.Small ? 'mb5' : 'mt5'">{{ stopwatch.elapsedTime | stopwatch }}</label>
+      <label class="stopwatch-time" [ngClass]="viewService.currentViewport !== viewService.ViewportEnum.Small ? 'mb5' : 'mt5'">{{ stopwatch.elapsedTime | stopwatch }}</label>
    </div>
 </div>

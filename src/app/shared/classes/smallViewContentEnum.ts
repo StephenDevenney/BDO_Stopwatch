@@ -1,4 +1,4 @@
-export enum ViewEnum {
+export enum SmallViewContentEnum {
     Stopwatch = "stopwatch",
     Overview = "overview"
 }

@@ -1,21 +1,18 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { PageComponent } from '../layout/page/page.component';
-import { ContentComponent } from '../layout/page/content/content.component';
 import { InterfaceModule } from './interface.module';
-import { SharedModule } from '../shared/modules/sharedModule';
+import { SharedModule } from './sharedModule';
 
 @NgModule({
   declarations: [
-    PageComponent,
-    ContentComponent
+    PageComponent
   ],
   imports: [
     SharedModule,
     InterfaceModule
   ],
   exports: [
-    PageComponent,
-    ContentComponent
+    PageComponent
   ],
   providers: [
     

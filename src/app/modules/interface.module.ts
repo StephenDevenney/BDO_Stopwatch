@@ -4,7 +4,7 @@ import { IconStopComponent } from '../layout/interface/icons/stop/stop.component
 import { OverviewComponent } from '../layout/interface/main/overview/overview.component';
 import { StopwatchComponent } from '../layout/interface/main/stopwatch/stopwatch.component';
 import { ViewToggleComponent } from '../layout/interface/main/view-toggle/viewToggle.component';
-import { SharedModule } from '../shared/modules/sharedModule';
+import { SharedModule } from './sharedModule';
 
 
 
