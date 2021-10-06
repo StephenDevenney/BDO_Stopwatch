@@ -6,19 +6,26 @@ export class StopwatchService {
     private timer: Observable<number> = interval(1000);
     private subscription: Subscription;
     public elapsedTime: number = 0;
+    public isRunning: boolean = false;
     
     constructor(){
 
     }
 
     public startStopwatch() {
+        this.isRunning = true;
         this.subscription = this.timer.subscribe(() => {
             this.elapsedTime++;
         });
     }
 
     public stopStopwatch() {
+        this.isRunning = false;
         this.subscription.unsubscribe();
     }
 
+    public resetStopwatch() {
+        this.stopStopwatch();
+        this.elapsedTime = 0;
+    }
 }
