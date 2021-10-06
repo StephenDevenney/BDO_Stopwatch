@@ -3,7 +3,8 @@
       <label class="stopwatch-time" [ngClass]="viewService.currentViewport !== viewService.ViewportEnum.Small ? 'mb5' : 'mt5'">{{ stopwatch.elapsedTime | stopwatch }}</label>
    </div>
    <div class="s-center h25">
-      <label> dropdown & checkbox</label>
+      <s-dropdown></s-dropdown>
+      <s-checkbox></s-checkbox>
    </div>
    <div class="h25 s-center">
       <s-button class="mr1" [buttonType]="enumUIService.ButtonTypeEnum.Primary" text="Add"></s-button>
