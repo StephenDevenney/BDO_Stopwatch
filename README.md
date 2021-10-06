@@ -1,2 +1,2 @@
-# BDO_Timer
- Timer App
+# BDO_Stopwatch
+ Stopwatch App

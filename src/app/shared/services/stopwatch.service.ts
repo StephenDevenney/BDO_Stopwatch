@@ -3,7 +3,7 @@ import { Observable, interval, Subscription } from 'rxjs';
 
 @Injectable()
 export class StopwatchService {
-    private timer: Observable<number> = interval(1000);
+    private stopwatch: Observable<number> = interval(1000);
     private subscription: Subscription;
     public elapsedTime: number = 0;
     public isRunning: boolean = false;
@@ -14,7 +14,7 @@ export class StopwatchService {
 
     public startStopwatch() {
         this.isRunning = true;
-        this.subscription = this.timer.subscribe(() => {
+        this.subscription = this.stopwatch.subscribe(() => {
             this.elapsedTime++;
         });
     }

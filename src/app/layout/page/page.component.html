@@ -1,5 +1,5 @@
 <div class="page viewport-container h100" [ngClass]="viewService.currentViewport">
-    <stopwatch [hidden]="viewService.currentViewport === viewService.ViewportEnum.Small && viewService.currentSmallViewContent === viewService.SmallViewContentEnum.Overview" class="grid-item-container"></stopwatch>
-    <overview [hidden]="viewService.currentViewport === viewService.ViewportEnum.Small && viewService.currentSmallViewContent === viewService.SmallViewContentEnum.Stopwatch" class="grid-item-container"></overview>
-    <view-toggle *ngIf="viewService.currentViewport === viewService.ViewportEnum.Small"></view-toggle>
+    <stopwatch [hidden]="viewService.hideStopwatchContentCheck()" class="grid-item-container"></stopwatch>
+    <overview [hidden]="viewService.hideOverviewContentCheck()" class="grid-item-container"></overview>
+    <view-toggle *ngIf="viewService.smallViewportCheck();"></view-toggle>
 </div>

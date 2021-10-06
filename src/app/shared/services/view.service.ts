@@ -57,4 +57,28 @@ export class ViewService {
     public get SmallViewContentEnum() {
         return SmallViewContentEnum; 
     }
+
+    /*
+        NgIf / Hidden - Checks
+    */
+    public hideStopwatchContentCheck(): boolean {
+        if(this.currentViewport === this.ViewportEnum.Small && this.currentSmallViewContent === this.SmallViewContentEnum.Overview)
+            return true;
+        else
+            return false;
+    }
+
+    public hideOverviewContentCheck(): boolean {
+        if(this.currentViewport === this.ViewportEnum.Small && this.currentSmallViewContent === this.SmallViewContentEnum.Stopwatch)
+            return true;
+        else
+            return false;
+    }
+
+    public smallViewportCheck(): boolean {
+        if(this.currentViewport === this.ViewportEnum.Small)
+            return true;
+        else
+            return false;
+    }
 }

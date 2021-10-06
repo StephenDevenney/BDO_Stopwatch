@@ -1,8 +1,8 @@
 {
-  "name": "bdo-timer",
+  "name": "bdo-stopwatch",
   "version": "0.1.0",
   "main": "index.js",
-  "description": "Timer app",
+  "description": "stopwatch app",
   "author": {
     "name": "Commander386"
   },
@@ -20,8 +20,8 @@
     "rebuild": "electron-rebuild -f -w sqlite3"
   },
   "build": {
-    "appId": "commander386.bdo-timer",
-    "productName": "bdo-timer",
+    "appId": "commander386.bdo-stopwatch",
+    "productName": "bdo-stopwatch",
     "directories": {
       "output": "build"
     },

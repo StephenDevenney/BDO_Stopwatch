@@ -1,8 +1,8 @@
 .env
-bdo-timer.sqlite
-bdo-timer.sqlite-shm
-bdo-timer.sqlite-wal
-bdo-timer.sqlite-journal
+bdo-stopwatch.sqlite
+bdo-stopwatch.sqlite-shm
+bdo-stopwatch.sqlite-wal
+bdo-stopwatch.sqlite-journal
 node_modules/
 build/
 appsettings.json
