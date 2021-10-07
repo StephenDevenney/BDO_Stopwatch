@@ -10,7 +10,7 @@
          [options]="categories" 
          [(ngModel)]="selectedCategory" 
          optionLabel="categoryName" 
-         placeholder="select category"
+         placeholder="Select Category"
          (onChange)="updateIsSelected();">
       </p-dropdown>
       <span *ngIf="categorySelected && selectedCategory.questingCompatible" [ngClass]="{ 'ml3': selectedCategory.questingCompatible }">

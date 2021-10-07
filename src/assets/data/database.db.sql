@@ -28,3 +28,4 @@ INSERT INTO enum_category (categoryName) VALUES ('Questing');
 INSERT INTO enum_category (categoryName, questingCompatible) VALUES ('RBF', 1);
 INSERT INTO enum_category (categoryName) VALUES ('Scrolls');
 INSERT INTO enum_category (categoryName, questingCompatible) VALUES ('Fishing', 1);
+INSERT INTO enum_category (categoryName) VALUES ('Lap Time');
