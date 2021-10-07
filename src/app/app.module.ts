@@ -17,16 +17,16 @@ import { SharedModule } from './modules/sharedModule';
   pb = top bar loader
 */
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
-  bgsColor: '#66b3ff',
+  bgsColor: '#5484BC',
   bgsPosition: POSITION.bottomRight,
   bgsSize: 100,
   bgsType: SPINNER.wanderingCubes,
   bgsOpacity: 0.8,
-  fgsColor: '#66b3ff',
+  fgsColor: '#5484BC',
   fgsPosition: POSITION.centerCenter,
   fgsType: SPINNER.cubeGrid,
   fgsSize: 150,
-  pbColor: '#66b3ff',
+  pbColor: '#5484BC',
   pbDirection: PB_DIRECTION.leftToRight,
   pbThickness: 20
 };

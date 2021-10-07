@@ -7,11 +7,17 @@
          [filter]="true" 
          filterBy="categoryName" 
          class="w-100" 
-         [options]="categories" 
+         [options]="categoriesGrouped" 
          [(ngModel)]="selectedCategory" 
          optionLabel="categoryName" 
          placeholder="Select Category"
-         (onChange)="updateIsSelected();">
+         (onChange)="updateIsSelected();"
+         [group]="true">
+         <ng-template let-group pTemplate="group">
+            <div class="p-d-flex p-ai-center">
+                <span>{{group.label}}</span>
+            </div>
+        </ng-template>
       </p-dropdown>
       <span *ngIf="categorySelected && selectedCategory.questingCompatible" [ngClass]="{ 'ml3': selectedCategory.questingCompatible }">
             <div class="s-center">
@@ -23,7 +29,7 @@
       </span>
    </div>
    <div class="h25 s-center">
-      <s-button class="mr1" [buttonType]="enumUIService.ButtonTypeEnum.Primary" text="Add"></s-button>
+      <s-button class="mr1" [buttonType]="enumUIService.ButtonTypeEnum.Primary" text="Add" (click)="addTime();"></s-button>
       <s-button class="mr1" [buttonType]="enumUIService.ButtonTypeEnum.Primary" text="Clear" (click)="stopwatch.resetStopwatch();"></s-button>
       <s-button [buttonType]="enumUIService.ButtonTypeEnum.Primary" text="Resume" (click)="stopwatch.startStopwatch();"></s-button>
    </div>

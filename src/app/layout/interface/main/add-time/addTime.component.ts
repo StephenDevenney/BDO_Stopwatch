@@ -1,5 +1,6 @@
 import { Component, Injector, OnInit } from '@angular/core';
-import { Category } from 'src/app/shared/classes/app/category';
+import { CategoriesGrouped, Category } from 'src/app/shared/classes/app/category';
+import { TimeSlot } from 'src/app/shared/classes/app/timeSlot';
 import { BaseComponent } from '../../../../shared/components/base.component';
 import { InterfaceEnumService } from '../../general/interface-enums/enum.service';
 
@@ -10,7 +11,7 @@ import { InterfaceEnumService } from '../../general/interface-enums/enum.service
 export class AddTimeComponent extends BaseComponent implements OnInit {
 
   public isLoaded: boolean = false;
-  public categories: Array<Category> = new Array<Category>();
+  public categoriesGrouped: Array<CategoriesGrouped> = new Array<CategoriesGrouped>();
   public selectedCategory: Category = new Category;
   public categorySelected: boolean = false;
   public addToQuestingTime: boolean = false;
@@ -21,16 +22,26 @@ export class AddTimeComponent extends BaseComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    await this.databaseService.getCategories().then((res: Array<Category>) => {
-      this.categories = res;
-      // this.selectedCategory = this.categories[0];
+    await this.databaseService.getCategories().then((res: Array<CategoriesGrouped>) => {
+      this.categoriesGrouped = res;
     }); 
     this.isLoaded = true;
-    console.log(this.categories);
   }
 
   public updateIsSelected() {
     if(!this.categorySelected)
       this.categorySelected = true;
+  }
+
+  public async addTime() {
+    if(this.categorySelected) {
+      this.loader.startBackground();
+      await this.databaseService.addNewEntry(new TimeSlot(0, this.selectedCategory, this.stopwatch.elapsedTime, ""), this.addToQuestingTime).catch(() => {
+        this.loader.stopBackground();
+      }).then(() => {
+        this.loader.stopBackground();
+        this.stopwatch.resetStopwatch();
+      });
+    }
   }
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { DatabaseHandler } from 'src/server/src/middleware/databaseHandler';
-import { Category } from '../classes/app/category';
+import { CategoriesGrouped, Category } from '../classes/app/category';
+import { TimeSlot } from '../classes/app/timeSlot';
 
 @Injectable()
 export class DatabaseService {
@@ -9,11 +10,11 @@ export class DatabaseService {
 
     }
 
-    public async addNewEntry(): Promise<void> {
-        return await this.databaseHandler.addNewEntry();
+    public async addNewEntry(newEntry: TimeSlot, addToQuestingTime: boolean): Promise<void> {
+        return await this.databaseHandler.addNewEntry(newEntry, addToQuestingTime);
     }
 
-    public async getCategories(): Promise<Array<Category>> {
+    public async getCategories(): Promise<Array<CategoriesGrouped>> {
         return await this.databaseHandler.getCategories();
     }
 

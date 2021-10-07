@@ -190,3 +190,9 @@ button {
 .p-dropdown:not(.p-disabled):hover {
     border-color: lighten($color: $blue, $amount: 20%)
 }
+
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item-group {
+    background: lighten($color: $blue, $amount: 37%);
+    font-family: 'DMSans';
+    font-size: 1.2rem;
+}
