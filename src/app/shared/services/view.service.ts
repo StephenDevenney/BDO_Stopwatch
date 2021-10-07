@@ -34,7 +34,7 @@ export class ViewService {
     public determineViewport(width: number, height: number) {
         let newViewport: ViewportEnum;
 
-        if(width < 1000 && height > 760)
+        if(width < 1000 && height > 850)
             newViewport = ViewportEnum.Tall;
         else if(width < 1000 && height < 1000)
             newViewport = ViewportEnum.Small;
