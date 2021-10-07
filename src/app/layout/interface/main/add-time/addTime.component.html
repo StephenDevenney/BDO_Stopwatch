@@ -1,10 +1,26 @@
-<span>
+<span *ngIf="isLoaded">
    <div class="s-center h50">
-      <label class="stopwatch-time" [ngClass]="viewService.currentViewport !== viewService.ViewportEnum.Small ? 'mb5' : 'mt5'">{{ stopwatch.elapsedTime | stopwatch }}</label>
+      <label class="stopwatch-time">{{ stopwatch.elapsedTime | stopwatch }}</label>
    </div>
    <div class="s-center h25">
-      <s-dropdown></s-dropdown>
-      <s-checkbox></s-checkbox>
+      <p-dropdown 
+         [filter]="true" 
+         filterBy="categoryName" 
+         class="w-100" 
+         [options]="categories" 
+         [(ngModel)]="selectedCategory" 
+         optionLabel="categoryName" 
+         placeholder="select category"
+         (onChange)="updateIsSelected();">
+      </p-dropdown>
+      <span *ngIf="categorySelected && selectedCategory.questingCompatible" [ngClass]="{ 'ml3': selectedCategory.questingCompatible }">
+            <div class="s-center">
+               <label class="switch-text">Also Questing</label>
+            </div>
+            <div class="s-center">
+               <p-inputSwitch [(ngModel)]="addToQuestingTime" ngDefaultControl></p-inputSwitch>
+            </div>
+      </span>
    </div>
    <div class="h25 s-center">
       <s-button class="mr1" [buttonType]="enumUIService.ButtonTypeEnum.Primary" text="Add"></s-button>

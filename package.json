@@ -57,6 +57,8 @@
     "moment": "^2.29.1",
     "ngx-ui-loader": "^10.0.0",
     "popper.js": "^1.16.1",
+    "primeicons": "^4.1.0",
+    "primeng": "^11.3.2",
     "rxjs": "~6.6.0",
     "sqlite3": "^5.0.2",
     "tslib": "^2.0.0",

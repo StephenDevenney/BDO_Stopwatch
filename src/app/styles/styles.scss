@@ -3,6 +3,13 @@
 @import './viewport.scss';
 @import './strapper.scss';
 
+@import '../../../node_modules/primeng/resources/primeng.min.css';
+@import '../../../node_modules/primeicons/primeicons.css';
+@import '../../../node_modules/primeng/resources/themes/saga-blue/theme.css';
+
+
+
+
 /*
     # General
         ## Main
@@ -13,6 +20,7 @@
         ## Labels
         ## Button 
         ## Stopwatch-Time
+    # PrimeNg Override
 */
 
 // # General
@@ -47,26 +55,31 @@ body {
     src: url('../../assets/fonts/Poly-Regular.ttf');
 }
 
+@font-face {
+    font-family: 'DMSans';
+    src: url('../../assets/fonts/DMSans-Regular.ttf');
+}
+
 // ## Headers
 h1 {
     font-size: 3.2rem;
     font-weight: 600;
     line-height: 1.5;
-    font-family: 'Poly';
+    font-family: 'DMSans';
 }
 
 h2 {
     font-size: 2.2rem;
     font-weight: 600;
     line-height: 1.5;
-    font-family: 'Poly';
+    font-family: 'DMSans';
 }
 
 h3 {
     font-size: 1.2rem;
     font-weight: 600;
     line-height: 1.5;
-    font-family: 'Poly';
+    font-family: 'DMSans';
 }
 
 // ## Labels
@@ -78,17 +91,102 @@ label {
     font-weight: 400;
     text-align: left;
     vertical-align: middle;
-    font-family: 'Poly';
+    font-family: 'DMSans';
 }
 
 // ## Button 
 button {
     font-weight: 600;
-    font-family: 'Poly';
+    font-family: 'DMSans';
 }
 
 // ## Stopwatch-Time
 .stopwatch-time {
     font-size: 8rem;
     font-weight: 700;
+    font-family: 'Poly';
+}
+
+// # PrimeNg Override
+.p-dropdown,.p-inputnumber, .p-inputtext {
+    background-color: $white;
+    width: 18rem;
+    font-size: 2rem;
+    text-align: center;
+    border-radius: 0.25rem;
+    font-family: 'DMSans';
+    border-color: $blue;
+}
+
+.p-dropdown-panel {
+    background-color: $white;
+}
+
+.p-dropdown-panel .p-dropdown-header {
+    background-color: $white;
+}
+
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+    font-family: 'DMSans';
+}
+
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
+    background-color: lighten($color: $blue, $amount: 35%);
+}
+
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item:not(.p-highlight):not(.p-disabled):hover {
+    background-color: lighten($color: $light-grey, $amount: 10%);
+}
+
+.p-dropdown:not(.p-disabled).p-focus {
+    box-shadow: none;
+}
+
+.p-inputswitch {
+    width: 6rem;
+    height: 2.5rem;
+}
+
+.p-inputswitch.p-inputswitch-checked .p-inputswitch-slider:before {
+    transform: translateX(3.6rem);
+}
+
+.p-inputswitch .p-inputswitch-slider:before {
+    width: 1.6rem;
+    height: 1.6rem;
+    margin-top: -0.8rem;
+    left: 0.4rem;
+}
+
+.p-inputswitch.p-inputswitch-checked .p-inputswitch-slider {
+    background-color: $blue;
+}
+
+.p-inputswitch.p-inputswitch-checked:not(.p-disabled):hover .p-inputswitch-slider {
+    background-color: lighten($color: $blue, $amount: 5%);
+}
+
+.p-inputswitch .p-inputswitch-slider {
+    background-color: $medium-grey;
+}
+
+.p-inputswitch:not(.p-disabled):hover .p-inputswitch-slider {
+    background-color: darken($color: $medium-grey, $amount: 5%);
+}
+
+.p-inputswitch.p-focus .p-inputswitch-slider{
+    box-shadow: none;
+}
+
+.switch-text {
+    padding-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.p-inputtext:enabled:focus {
+    box-shadow: 0 0 0 0.2rem $blue;
+}
+
+.p-dropdown:not(.p-disabled):hover {
+    border-color: lighten($color: $blue, $amount: 20%)
 }

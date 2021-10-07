@@ -1,7 +1,5 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { ButtonUIComponent } from '../layout/interface/general/button/button.component';
-import { CheckboxUIComponent } from '../layout/interface/general/checkbox/checkbox.component';
-import { DropdownUIComponent } from '../layout/interface/general/dropdown/dropdown.component';
 import { InterfaceEnumService } from '../layout/interface/general/interface-enums/enum.service';
 import { IconStartComponent } from '../layout/interface/icons/start/start.component';
 import { IconStopComponent } from '../layout/interface/icons/stop/stop.component';
@@ -10,10 +8,14 @@ import { OverviewComponent } from '../layout/interface/main/overview/overview.co
 import { StopwatchComponent } from '../layout/interface/main/stopwatch/stopwatch.component';
 import { ViewToggleComponent } from '../layout/interface/main/view-toggle/viewToggle.component';
 import { SharedModule } from './sharedModule';
+import { DropdownModule } from 'primeng/dropdown';
+import { InputSwitchModule } from 'primeng/inputswitch';
 
 @NgModule({
   imports: [
-    SharedModule
+    SharedModule,
+    DropdownModule,
+    InputSwitchModule
   ],
   declarations: [
     StopwatchComponent,
@@ -22,9 +24,7 @@ import { SharedModule } from './sharedModule';
     AddTimeComponent,
     IconStartComponent,
     IconStopComponent,
-    ButtonUIComponent,
-    DropdownUIComponent,
-    CheckboxUIComponent
+    ButtonUIComponent
   ],
   exports: [
     StopwatchComponent,
@@ -34,8 +34,6 @@ import { SharedModule } from './sharedModule';
     IconStartComponent,
     IconStopComponent,
     ButtonUIComponent,
-    DropdownUIComponent,
-    CheckboxUIComponent
   ],
   providers: [
     InterfaceEnumService
