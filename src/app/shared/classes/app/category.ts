@@ -4,9 +4,11 @@ export class Category {
     public questingCompatible: boolean = false;
 
     constructor(categoryId?: number, categoryName?: string, questingCompatible?: boolean) {
-        this.categoryId = categoryId;
-        this.categoryName = categoryName;
-        this.questingCompatible = questingCompatible;
+        if(categoryId) {
+            this.categoryId = categoryId;
+            this.categoryName = categoryName;
+            this.questingCompatible = questingCompatible;
+        }
     }
 }
 

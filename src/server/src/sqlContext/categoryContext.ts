@@ -1,9 +1,7 @@
 import { TheDb } from '../thedb';
 import { Category } from "../../../app/shared/classes/app/category";
-import { TimeSlot } from 'src/app/shared/classes/app/timeSlot';
-import { Services } from '../services';
 
-export class DatabaseContext {
+export class CategoryContext {
     public categoryId: number = 0;
     public categoryName: string = "";
     public questingCompatible: boolean = false;
@@ -17,7 +15,7 @@ export class DatabaseContext {
             .then((rows: any) => {
                 const nm: Array<Category> = new Array<Category>();
                 for (const row of rows) {
-                    const item = new DatabaseContext().fromRowCategory(row);
+                    const item = new CategoryContext().fromRow(row);
                     nm.push(item);
             }
             return nm;
@@ -32,27 +30,19 @@ export class DatabaseContext {
         return TheDb.selectAll(sql, values).then((rows: any) => {
           const nm: Array<Category> = new Array<Category>();
           for (const row of rows) {
-              const item = new DatabaseContext().fromRowCategory(row);
+              const item = new CategoryContext().fromRow(row);
               nm.push(item);
           }
           return nm;
         });
       }
   
-    private fromRowCategory(row: Category): Category {
+    private fromRow(row: Category): Category {
         this.categoryId = row['categoryId'];
         this.categoryName = row['categoryName'];
         if(!!row['questingCompatible'])
             this.questingCompatible = true;
   
         return this;
-    }
-
-        // Add Time Slot
-    public async insertTime(entry: TimeSlot): Promise<void> {
-        const sql = `INSERT OR REPLACE INTO data_log (FK_categoryId, secs, dateCreated) VALUES ($categoryId, $secs, $dateCreated);`;
-        const values = { $categoryId: entry.category.categoryId, $secs: entry.secs, $dateCreated: new Services().getCurrentDate() };
-    
-        await TheDb.insert(sql, values).then((result) => {});
     }
 }
