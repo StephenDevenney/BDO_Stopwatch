@@ -1,6 +1,6 @@
 import { Component, Injector, OnInit } from '@angular/core';
-import { CategoriesGrouped, Category } from 'src/app/shared/classes/app/category';
-import { TimeSlot } from 'src/app/shared/classes/app/timeSlot';
+import { LocationsGrouped, Location } from '../../../../shared/classes/app/locations';
+import { TimeSlot } from '../../../../shared/classes/app/timeSlot';
 import { BaseComponent } from '../../../../shared/components/base.component';
 import { InterfaceEnumService } from '../../general/interface-enums/enum.service';
 
@@ -11,9 +11,9 @@ import { InterfaceEnumService } from '../../general/interface-enums/enum.service
 export class AddTimeComponent extends BaseComponent implements OnInit {
 
   public isLoaded: boolean = false;
-  public categoriesGrouped: Array<CategoriesGrouped> = new Array<CategoriesGrouped>();
-  public selectedCategory: Category = new Category;
-  public categorySelected: boolean = false;
+  public locationsGrouped: Array<LocationsGrouped> = new Array<LocationsGrouped>();
+  public selectedLocation: Location = new Location;
+  public locationSelected: boolean = false;
   public addToQuestingTime: boolean = false;
 
   constructor(private injector: Injector,
@@ -22,21 +22,21 @@ export class AddTimeComponent extends BaseComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    await this.databaseService.getCategories().then((res: Array<CategoriesGrouped>) => {
-      this.categoriesGrouped = res;
+    await this.databaseService.getLocations().then((res: Array<LocationsGrouped>) => {
+      this.locationsGrouped = res;
     }); 
     this.isLoaded = true;
   }
 
   public updateIsSelected() {
-    if(!this.categorySelected)
-      this.categorySelected = true;
+    if(!this.locationSelected)
+      this.locationSelected = true;
   }
 
   public async addTime() {
-    if(this.categorySelected) {
+    if(this.locationSelected) {
       this.loader.startBackground();
-      await this.databaseService.addNewEntry(new TimeSlot(0, this.selectedCategory, this.stopwatch.elapsedTime, ""), this.addToQuestingTime).catch(() => {
+      await this.databaseService.addNewEntry(new TimeSlot(0, this.selectedLocation, this.stopwatch.elapsedTime, "")).catch(() => {
         this.loader.stopBackground();
       }).then(() => {
         this.loader.stopBackground();

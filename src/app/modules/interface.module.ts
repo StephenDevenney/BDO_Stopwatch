@@ -11,6 +11,7 @@ import { SharedModule } from './sharedModule';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { ChartModule } from 'primeng/chart';
+import { ChartUIComponent } from '../layout/interface/general/chart/chart.component';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { ChartModule } from 'primeng/chart';
     AddTimeComponent,
     IconStartComponent,
     IconStopComponent,
-    ButtonUIComponent
+    ButtonUIComponent,
+    ChartUIComponent
   ],
   exports: [
     StopwatchComponent,
@@ -36,6 +38,7 @@ import { ChartModule } from 'primeng/chart';
     IconStartComponent,
     IconStopComponent,
     ButtonUIComponent,
+    ChartUIComponent
   ],
   providers: [
     InterfaceEnumService

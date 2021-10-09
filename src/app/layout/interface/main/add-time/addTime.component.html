@@ -5,12 +5,12 @@
    <div class="s-center h25">
       <p-dropdown 
          [filter]="true" 
-         filterBy="categoryName" 
+         filterBy="locationName" 
          class="w-100" 
-         [options]="categoriesGrouped" 
-         [(ngModel)]="selectedCategory" 
-         optionLabel="categoryName" 
-         placeholder="Select Category"
+         [options]="locationsGrouped" 
+         [(ngModel)]="selectedLocation" 
+         optionLabel="locationName" 
+         placeholder="Select Location"
          (onChange)="updateIsSelected();"
          [group]="true">
          <ng-template let-group pTemplate="group">
@@ -19,18 +19,22 @@
             </div>
         </ng-template>
       </p-dropdown>
-      <span *ngIf="categorySelected && selectedCategory.questingCompatible" [ngClass]="{ 'ml3': selectedCategory.questingCompatible }">
+      <!-- <span *ngIf="locationSelected && selectedLocation.questingCompatible" [ngClass]="{ 'ml3': selectedLocation.questingCompatible }">
             <div class="s-center">
                <label class="switch-text">Also Questing</label>
             </div>
             <div class="s-center">
                <p-inputSwitch [(ngModel)]="addToQuestingTime" ngDefaultControl></p-inputSwitch>
             </div>
-      </span>
+      </span> -->
    </div>
    <div class="h25 s-center">
       <s-button class="mr1" [buttonType]="enumUIService.ButtonTypeEnum.Primary" text="Add" (click)="addTime();"></s-button>
-      <s-button class="mr1" [buttonType]="enumUIService.ButtonTypeEnum.Primary" text="Clear" (click)="stopwatch.resetStopwatch();"></s-button>
+      <s-button class="mr1" [buttonType]="enumUIService.ButtonTypeEnum.Primary" text="Reset" (click)="stopwatch.resetStopwatch();"></s-button>
       <s-button [buttonType]="enumUIService.ButtonTypeEnum.Primary" text="Resume" (click)="stopwatch.startStopwatch();"></s-button>
    </div>
 </span>
+
+<!-- 
+   TODO: Add Elvia Realm Check
+ -->

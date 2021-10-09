@@ -1,5 +1,7 @@
+import { Injectable } from '@angular/core';
 import * as moment from 'moment';
 
+@Injectable()
 export class Services { 
         // Current Date - Today
     public getCurrentDate(): string {
@@ -19,5 +21,11 @@ export class Services {
         // Current Date - Year Begin
     public getYearStartDate(): string {
         return moment().startOf('year').format("YYYY-MM-DD");
+    }
+
+        // Convert secs to hours for canvas tooltip
+    public convertSecsToHours(seconds: number): number {
+        let timeHours = Math.floor(seconds/60);
+        return timeHours;
     }
 }

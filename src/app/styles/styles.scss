@@ -131,7 +131,10 @@ button {
 }
 
 .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
-    background-color: lighten($color: $blue, $amount: 35%);
+    background-color: transparent;
+    &:hover {
+        background-color: lighten($color: $light-grey, $amount: 10%);
+    }
 }
 
 .p-dropdown-panel .p-dropdown-items .p-dropdown-item:not(.p-highlight):not(.p-disabled):hover {

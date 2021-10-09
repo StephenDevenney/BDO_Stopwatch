@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Category } from "src/app/shared/classes/app/category";
-import { TimeSlot } from "src/app/shared/classes/app/timeSlot";
+import { TimeSlot } from "../../../app/shared/classes/app/timeSlot";
 import { TimeSlotContext } from "../sqlContext/timeSlotContext";
 
 @Injectable()
@@ -8,13 +7,7 @@ export class TimeSlotHandler {
 
     public constructor(private timeSlotContext: TimeSlotContext) {}
 
-    public async addNewEntry(newEntry: TimeSlot, addToQuestingTime: boolean): Promise<void> {
-        let temp: Category = newEntry.category;
-        if(addToQuestingTime) {
-            newEntry.category = new Category(7, "Questing", false);
-            await this.timeSlotContext.insertTime(newEntry);
-        }
-        newEntry.category = temp;
+    public async addNewEntry(newEntry: TimeSlot): Promise<void> {
         await this.timeSlotContext.insertTime(newEntry);
     }
 

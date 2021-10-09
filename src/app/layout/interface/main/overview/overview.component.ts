@@ -1,5 +1,5 @@
 import { Component, Injector, OnInit } from '@angular/core';
-import { PieChart, TimeSlot } from '../../../../shared/classes/app/timeSlot';
+import { ChartVM, TimeSlot } from '../../../../shared/classes/app/timeSlot';
 import { BaseComponent } from '../../../../shared/components/base.component';
 
 @Component({
@@ -8,7 +8,8 @@ import { BaseComponent } from '../../../../shared/components/base.component';
 })
 export class OverviewComponent extends BaseComponent implements OnInit {
 
-  public chart: PieChart;
+  public isLoaded: boolean = false;
+  public chart: ChartVM;
 
   constructor(private injector: Injector) {
     super(injector);
@@ -16,13 +17,15 @@ export class OverviewComponent extends BaseComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     await this.loadTimeSlots();
+    this.isLoaded = true;
   }
 
   public async loadTimeSlots(): Promise<void> {
     await this.databaseService.getTimeSlots().catch(() => {
 
     }).then((timeSlots: Array<TimeSlot>) => {
-      console.log(timeSlots);
+      if(timeSlots)
+        this.chart = new ChartVM(timeSlots, "pie");
     });
   }
 }
