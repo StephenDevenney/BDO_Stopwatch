@@ -1,3 +1,10 @@
 <span *ngIf="isLoaded">
-   
+    <p-carousel [value]="carouselTabs" [numVisible]="1" [numScroll]="1">
+        <ng-template let-tab pTemplate="tab">
+            <label class="mb-0">{{tab.label}}</label>
+            <div>
+                Test
+            </div>
+        </ng-template>
+    </p-carousel>
 </span>

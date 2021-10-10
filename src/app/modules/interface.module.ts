@@ -10,12 +10,14 @@ import { ViewToggleComponent } from '../layout/interface/main/view-toggle/viewTo
 import { SharedModule } from './sharedModule';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputSwitchModule } from 'primeng/inputswitch';
+import { CarouselModule } from 'primeng/carousel';
 
 @NgModule({
   imports: [
     SharedModule,
     DropdownModule,
-    InputSwitchModule
+    InputSwitchModule,
+    CarouselModule
   ],
   declarations: [
     StopwatchComponent,

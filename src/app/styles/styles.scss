@@ -110,8 +110,8 @@ button {
 // # PrimeNg Override
 .p-dropdown,.p-inputnumber, .p-inputtext {
     background-color: $white;
-    width: 18.5rem;
-    font-size: 2rem;
+    width: 20rem;
+    font-size: 1.6rem;
     text-align: center;
     border-radius: 0.25rem;
     font-family: 'DMSans';
@@ -198,4 +198,22 @@ button {
     background: lighten($color: $blue, $amount: 37%);
     font-family: 'DMSans';
     font-size: 1.2rem;
+}
+
+.small {
+    .p-carousel, .p-carousel-content {
+        height: 100%;
+        .p-carousel-container {
+            height: 85%;
+        }
+    }
+}
+
+.long, .tall {
+    .p-carousel, .p-carousel-content {
+        height: 100%;
+        .p-carousel-container {
+            height: 100%;
+        }
+    }
 }
