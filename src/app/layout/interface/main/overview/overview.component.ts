@@ -1,5 +1,5 @@
 import { Component, Injector, OnInit } from '@angular/core';
-import { ChartVM, TimeSlot } from '../../../../shared/classes/app/timeSlot';
+import { TimeSlot } from '../../../../shared/classes/app/timeSlot';
 import { BaseComponent } from '../../../../shared/components/base.component';
 
 @Component({
@@ -9,7 +9,6 @@ import { BaseComponent } from '../../../../shared/components/base.component';
 export class OverviewComponent extends BaseComponent implements OnInit {
 
   public isLoaded: boolean = false;
-  public chart: ChartVM;
 
   constructor(private injector: Injector) {
     super(injector);
@@ -24,8 +23,7 @@ export class OverviewComponent extends BaseComponent implements OnInit {
     await this.databaseService.getTimeSlots().catch(() => {
 
     }).then((timeSlots: Array<TimeSlot>) => {
-      if(timeSlots)
-        this.chart = new ChartVM(timeSlots, "pie");
+      
     });
   }
 }

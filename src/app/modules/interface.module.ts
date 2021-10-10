@@ -10,15 +10,12 @@ import { ViewToggleComponent } from '../layout/interface/main/view-toggle/viewTo
 import { SharedModule } from './sharedModule';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputSwitchModule } from 'primeng/inputswitch';
-import { ChartModule } from 'primeng/chart';
-import { ChartUIComponent } from '../layout/interface/general/chart/chart.component';
 
 @NgModule({
   imports: [
     SharedModule,
     DropdownModule,
-    InputSwitchModule,
-    ChartModule
+    InputSwitchModule
   ],
   declarations: [
     StopwatchComponent,
@@ -27,8 +24,7 @@ import { ChartUIComponent } from '../layout/interface/general/chart/chart.compon
     AddTimeComponent,
     IconStartComponent,
     IconStopComponent,
-    ButtonUIComponent,
-    ChartUIComponent
+    ButtonUIComponent
   ],
   exports: [
     StopwatchComponent,
@@ -37,8 +33,7 @@ import { ChartUIComponent } from '../layout/interface/general/chart/chart.compon
     AddTimeComponent,
     IconStartComponent,
     IconStopComponent,
-    ButtonUIComponent,
-    ChartUIComponent
+    ButtonUIComponent
   ],
   providers: [
     InterfaceEnumService

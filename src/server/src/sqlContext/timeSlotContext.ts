@@ -19,13 +19,13 @@ export class TimeSlotContext {
 
         // GET TimeSlot
     public async getAll(): Promise<Array<TimeSlot>> {
-        const sql = `SELECT dataLogId, enum_locations.locationId, enum_locations.locationName, enum_locations.recommendedAP, enum_locations.recommendedLevel, enum_territory.territoryId, enum_territory.territoryName, secs, dateCreated FROM data_log INNER JOIN enum_locations ON enum_locations.locationId == data_log.FK_locationId INNER JOIN enum_territory ON enum_territory.territoryId == enum_locations.FK_territoryId ORDER BY dateCreated DESC, dataLogId DESC`;
+        const sql = `SELECT enum_locations.locationId, enum_locations.locationName, enum_locations.afuaruSpawnable, enum_locations.recommendedAP, enum_locations.recommendedLevel, enum_territory.territoryId, enum_territory.territoryName, SUM(secs)as secs, dateCreated FROM data_log INNER JOIN enum_locations ON enum_locations.locationId == data_log.FK_locationId INNER JOIN enum_territory ON enum_territory.territoryId == enum_locations.FK_territoryId GROUP BY locationId ORDER BY dateCreated DESC, dataLogId DESC`;
         const values = {};
             return await TheDb.selectAll(sql, values)
                 .then((rows: any) => {
                     const nm: Array<TimeSlot> = new Array<TimeSlot>();
                     for (const row of rows) {
-                        const item = this.fromRowTimeSlot(row);
+                        const item = new TimeSlotContext().fromRowTimeSlot(row);
                         nm.push(item);
                 }
             return nm;
@@ -33,7 +33,6 @@ export class TimeSlotContext {
     }
 
     private fromRowTimeSlot(row: TimeSlot): TimeSlot {
-        this.dataLogId = row['dataLogId'];
         this.location.locationId = row['locationId'];
         this.location.locationName = row['locationName'];
         this.location.recommendedAP = row['recommendedAP'];

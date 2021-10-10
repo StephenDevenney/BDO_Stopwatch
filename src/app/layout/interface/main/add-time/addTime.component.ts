@@ -36,7 +36,7 @@ export class AddTimeComponent extends BaseComponent implements OnInit {
   public async addTime() {
     if(this.locationSelected) {
       this.loader.startBackground();
-      await this.databaseService.addNewEntry(new TimeSlot(0, this.selectedLocation, this.stopwatch.elapsedTime, "")).catch(() => {
+      await this.databaseService.addNewEntry(new TimeSlot(this.selectedLocation, this.stopwatch.elapsedTime, "")).catch(() => {
         this.loader.stopBackground();
       }).then(() => {
         this.loader.stopBackground();
