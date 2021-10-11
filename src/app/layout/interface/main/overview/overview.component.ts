@@ -1,5 +1,5 @@
 import { Component, Injector, OnInit } from '@angular/core';
-import { TimeSlot } from '../../../../shared/classes/app/timeSlot';
+import { OverviewData } from 'src/app/shared/classes/app/overviewData';
 import { BaseComponent } from '../../../../shared/components/base.component';
 
 @Component({
@@ -8,14 +8,25 @@ import { BaseComponent } from '../../../../shared/components/base.component';
 })
 export class OverviewComponent extends BaseComponent implements OnInit {
 
-  public isLoaded: boolean = false;
+  private isLoaded: boolean = false;
   private carouselTabs: any[] = [{id: 1, label: "Top Locations"},{ id: 2, label: "Top Territories" },{id: 3, label: "Location"},{ id: 4, label: "Total" }];
+  private overviewData: OverviewData;
 
   constructor(private injector: Injector) {
     super(injector);
   }
 
   async ngOnInit(): Promise<void> {
+    await this.loadOverviewData();
+    console.log(this.overviewData);
     this.isLoaded = true;
+  }
+
+  private async loadOverviewData() {
+    await this.databaseService.getOverviewData().catch(() => {
+
+    }).then((_: OverviewData) => {
+      this.overviewData = _;
+    });
   }
 }

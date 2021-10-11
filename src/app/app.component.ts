@@ -12,9 +12,9 @@ import { BaseComponent } from './shared/components/base.component';
   templateUrl: './app.component.html'
 })
 export class AppComponent extends BaseComponent {
-    public title = 'BDO Stopwatch';
-    public isLoaded = false;
-    public innerWidth: any;
+    private title = 'BDO Stopwatch';
+    private isLoaded = false;
+    private innerWidth: any;
 
     constructor(private injector: Injector,
                 private route: ActivatedRoute,
@@ -33,12 +33,12 @@ export class AppComponent extends BaseComponent {
     }
 
     @HostListener('window:resize', ['$event'])
-    public onResize(event: any) {
+    private onResize(event: any) {
         this.innerWidth = window.innerWidth;
         this.viewService.determineViewport(window.innerWidth, window.innerHeight);
     }
 
-    public openDb(filename: string) {
+    private openDb(filename: string) {
         TheDb.openDb(filename)
         .then(() => {
             if (!Settings.hasFixedDbLocation) {
@@ -55,7 +55,7 @@ export class AppComponent extends BaseComponent {
         });
     }
 
-    public async createDb(filename?: string) {
+    private async createDb(filename?: string) {
         if (!filename) {
             const options: SaveDialogSyncOptions = {
                 title: 'Create file',
@@ -89,7 +89,7 @@ export class AppComponent extends BaseComponent {
         });
     }
 
-    public async loadApplication() {
+    private async loadApplication() {
         this.titleService.setTitle(this.title);
         this.viewService.loadViewport();
         this.isLoaded = true;

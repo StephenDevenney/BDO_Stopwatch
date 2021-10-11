@@ -7,11 +7,11 @@ export class LoadingService {
     private opacityShow: boolean = false;
     private hasError: boolean = false;
     
-    constructor(public loader: NgxUiLoaderService){
+    constructor(private loader: NgxUiLoaderService){
 
     }
 
-    start(taskId?: string): void {
+    public start(taskId?: string): void {
         this.loading = true;
         if(!!taskId && taskId != "") 
             this.loader.startLoader(taskId);
@@ -22,11 +22,11 @@ export class LoadingService {
         this.hasError = false;
     }
 
-    isError(): boolean {
+    private isError(): boolean {
          return this.hasError;
     }
 
-    stop(taskId?: string): void {
+    public stop(taskId?: string): void {
         if(!!taskId && taskId != "")
             this.loader.stopLoader(taskId);
         else
@@ -37,7 +37,7 @@ export class LoadingService {
         this.hasError = false;
     }
 
-    startBackground(taskId?: string): void {
+    public startBackground(taskId?: string): void {
         this.loading = true;
         if(!!taskId && taskId != "") 
             this.loader.startBackground(taskId);
@@ -48,7 +48,7 @@ export class LoadingService {
         this.hasError = false;
     }
 
-    stopBackground(taskId?: string): void {
+    public stopBackground(taskId?: string): void {
         if(!!taskId && taskId != "")
             this.loader.stopBackground(taskId);
         else
@@ -59,7 +59,7 @@ export class LoadingService {
         this.hasError = false;
     }
 
-    errorOccured(): void {
+    private errorOccured(): void {
         this.loading = false;
         this.hasError = true;
     }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { OverviewDataHandler } from '../../../server/src/middleware/overviewDataHandler';
 import { TimeSlotHandler } from '../../../server/src/middleware/timeSlotHandler';
 import { LocationsGrouped } from '../classes/app/locations';
+import { OverviewData } from '../classes/app/overviewData';
 import { TimeSlot } from '../classes/app/timeSlot';
 
 @Injectable()
@@ -16,7 +17,7 @@ export class DatabaseService {
         return await this.timeSlotHandler.addNewEntry(newEntry);
     }
 
-    public async getOverviewData(): Promise<void> {
+    public async getOverviewData(): Promise<OverviewData> {
         return await this.overviewDataHandler.getOverviewData();
     }
 

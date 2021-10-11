@@ -1,9 +1,9 @@
 import { TheDb } from '../thedb';
 import { Territory } from "../../../app/shared/classes/app/locations";
+import { TerritoryEntity } from '../../../server/entities/territoryEntity';
 
 export class TerritoryContext {
-  public territoryId: number = 0;
-  public territoryName: string = "";
+  private territory: Territory = new Territory;
   
   public getAll(): Promise<Array<Territory>> {
     const sql = `SELECT * FROM enum_territory WHERE territoryId != 1`;
@@ -19,10 +19,10 @@ export class TerritoryContext {
     });
   }
   
-  private fromRow(row: Territory): Territory {
-    this.territoryId = row['territoryId'];
-    this.territoryName = row['territoryName'];
+  private fromRow(row: TerritoryEntity): Territory {
+    this.territory.territoryId = row['territoryId'];
+    this.territory.territoryName = row['territoryName'];
   
-    return this;
+    return this.territory;
   }
 }

@@ -1,13 +1,10 @@
 import { TheDb } from '../thedb';
-import { Location } from "../../../app/shared/classes/app/locations";
 import { TimeSlot } from '../../../app/shared/classes/app/timeSlot';
 import { Services } from '../../../app/shared/services/services';
+import { TimeSlotEntity } from 'src/server/entities/timeSlotEntity';
 
 export class TimeSlotContext {
-    public dataLogId: number = 0;
-    public location: Location = new Location;
-    public secs: number = 0;
-    public dateCreated: string = "";
+    private timeSlot: TimeSlot = new TimeSlot;
 
         // Add Time Slot
     public async insertTime(entry: TimeSlot): Promise<void> {
@@ -32,18 +29,18 @@ export class TimeSlotContext {
         });
     }
 
-    private fromRowTimeSlot(row: TimeSlot): TimeSlot {
-        this.location.locationId = row['locationId'];
-        this.location.locationName = row['locationName'];
-        this.location.recommendedAP = row['recommendedAP'];
-        this.location.recommendedLevel = row['recommendedLevel'];
-        this.location.territory.territoryId = row['territoryId'];
-        this.location.territory.territoryName = row['territoryName'];
+    private fromRowTimeSlot(row: TimeSlotEntity): TimeSlot {
+        this.timeSlot.location.locationId = row['locationId'];
+        this.timeSlot.location.locationName = row['locationName'];
+        this.timeSlot.location.recommendedAP = row['recommendedAP'];
+        this.timeSlot.location.recommendedLevel = row['recommendedLevel'];
+        this.timeSlot.location.territory.territoryId = row['territoryId'];
+        this.timeSlot.location.territory.territoryName = row['territoryName'];
         if(!!row['afuaruSpawnable'])
-            this.location.afuaruSpawnable = true;
-        this.secs = row['secs'];
-        this.dateCreated = row['dateCreated'];
+            this.timeSlot.location.afuaruSpawnable = true;
+        this.timeSlot.secs = row['secs'];
+        this.timeSlot.dateCreated = row['dateCreated'];
   
-        return this;
+        return this.timeSlot;
     }
 }

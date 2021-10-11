@@ -35,15 +35,15 @@ export class TimeData {
 }
 
 export class TopFive {
-    public item: Location | Territory;
+    public itemName: string = "";
     public secs: number = 0;
-    public count: number = 0;
+    public occurs: number = 0;
     
-    constructor(item?: Location | Territory, secs?: number, count?: number) {
-        if(item) {
-            this.item = item;
+    constructor(itemName?: string, secs?: number, occurs?: number) {
+        if(itemName) {
+            this.itemName = itemName;
             this.secs = secs;
-            this.count = count;
+            this.occurs = occurs;
         }
     }
 }

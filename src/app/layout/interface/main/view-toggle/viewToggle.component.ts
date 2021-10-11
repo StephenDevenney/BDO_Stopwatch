@@ -8,7 +8,7 @@ import { InterfaceEnumService } from '../../general/interface-enums/enum.service
 export class ViewToggleComponent extends BaseComponent implements OnInit {
 
   constructor(private injector: Injector,
-              public enumUIService: InterfaceEnumService) {
+              private enumUIService: InterfaceEnumService) {
     super(injector);
   }
 

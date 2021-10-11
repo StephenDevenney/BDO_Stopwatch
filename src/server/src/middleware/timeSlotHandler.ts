@@ -8,7 +8,7 @@ import { TimeSlotContext } from "../sqlContext/timeSlotContext";
 @Injectable()
 export class TimeSlotHandler {
 
-    public constructor(private timeSlotContext: TimeSlotContext,
+    constructor(private timeSlotContext: TimeSlotContext,
                         private locationContext: LocationContext,
                         private territoryContext: TerritoryContext) {}
 

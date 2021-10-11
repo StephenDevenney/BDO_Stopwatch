@@ -13,7 +13,7 @@ export class ButtonUIComponent extends BaseComponent implements OnInit {
   @Input() text?: string;
 
   constructor(private injector: Injector,
-              public enumUIService: InterfaceEnumService) {
+              private enumUIService: InterfaceEnumService) {
     super(injector);
   }
 

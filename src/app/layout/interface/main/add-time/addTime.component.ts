@@ -10,14 +10,14 @@ import { InterfaceEnumService } from '../../general/interface-enums/enum.service
 })
 export class AddTimeComponent extends BaseComponent implements OnInit {
 
-  public isLoaded: boolean = false;
-  public locationsGrouped: Array<LocationsGrouped> = new Array<LocationsGrouped>();
-  public selectedLocation: Location = new Location;
-  public locationSelected: boolean = false;
-  public addToQuestingTime: boolean = false;
+  private isLoaded: boolean = false;
+  private locationsGrouped: Array<LocationsGrouped> = new Array<LocationsGrouped>();
+  private selectedLocation: Location = new Location;
+  private locationSelected: boolean = false;
+  private addToQuestingTime: boolean = false;
 
   constructor(private injector: Injector,
-              public enumUIService: InterfaceEnumService) {
+              private enumUIService: InterfaceEnumService) {
     super(injector);
   }
 
@@ -28,12 +28,12 @@ export class AddTimeComponent extends BaseComponent implements OnInit {
     this.isLoaded = true;
   }
 
-  public updateIsSelected() {
+  private updateIsSelected() {
     if(!this.locationSelected)
       this.locationSelected = true;
   }
 
-  public async addTime() {
+  private async addTime() {
     if(this.locationSelected) {
       this.loader.startBackground();
       await this.databaseService.addNewEntry(new TimeSlot(this.selectedLocation, this.stopwatch.elapsedTime, "")).catch(() => {

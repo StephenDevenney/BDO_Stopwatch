@@ -3,7 +3,7 @@ import { Location, Territory } from "../../../app/shared/classes/app/locations";
 import { LocationEntity } from '../../entities/locationEntity';
 
 export class LocationContext {
-    public location: Location = new Location;
+    private location: Location = new Location;
   
         // GET Locations
     public getAll(): Promise<Array<Location>> {
