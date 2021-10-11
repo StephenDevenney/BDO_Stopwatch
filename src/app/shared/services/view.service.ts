@@ -36,9 +36,9 @@ export class ViewService {
 
         if(width < 1000 && height > 850)
             newViewport = ViewportEnum.Tall;
-        else if(width < 1000 && height < 850)
+        else if(width < 1080 && height < 850)
             newViewport = ViewportEnum.Small;
-        else if(width > 1000 && height < 760)
+        else if(width > 1080 && height < 760)
             newViewport = ViewportEnum.Long;
         else
             newViewport = ViewportEnum.Long;

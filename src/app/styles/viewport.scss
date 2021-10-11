@@ -19,8 +19,8 @@
 
 // # Long
 .long {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 100%;
 
     .grid-item-container:first-child {
         border-right: 8px solid #5484BC;

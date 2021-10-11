@@ -1,9 +1,11 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LocationHandler } from '../../server/src/middleware/locationHandler';
 import { TimeSlotHandler } from '../../server/src/middleware/timeSlotHandler';
-import { LocationContext, TerritoryContext } from '../../server/src/sqlContext/locationContext';
+import { LocationContext } from '../../server/src/sqlContext/locationContext';
 import { TimeSlotContext } from '../../server/src/sqlContext/timeSlotContext';
+import { OverviewDataHandler } from '../../server/src/middleware/overviewDataHandler';
+import { TotalTimeContext } from '../../server/src/sqlContext/totalTimeContext';
+import { TerritoryContext } from '../../server/src/sqlContext/territoryContext';
 
 @NgModule({
     imports: [
@@ -16,11 +18,12 @@ import { TimeSlotContext } from '../../server/src/sqlContext/timeSlotContext';
       
     ],
     providers: [
-      LocationHandler,
+      OverviewDataHandler,
+      TimeSlotHandler,
       LocationContext,
       TerritoryContext,
-      TimeSlotHandler,
-      TimeSlotContext
+      TimeSlotContext,
+      TotalTimeContext
     ]
   })
   export class ServerModule { 

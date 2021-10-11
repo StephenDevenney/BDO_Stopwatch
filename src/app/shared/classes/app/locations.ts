@@ -1,26 +1,20 @@
 export class Location {
     public locationId: number = 1;
-    public territoryId: number = 1;
     public locationName: string = "-";
-    public territoryName: string = "-";
+    public territory: Territory = new Territory;
     public recommendedLevel: string = "";
     public recommendedAP: string = "";
     public afuaruSpawnable: boolean = false;
-    public locationCount: number = 0;
 
-    constructor(locationId?: number, territoryId?: number, locationName?: string, territoryName?: string, recommendedLevel?: string, recommendedAP?: string, afuaruSpawnable?: boolean, locationCount?: number) {
+    constructor(locationId?: number, locationName?: string, territory?: Territory, recommendedLevel?: string, recommendedAP?: string, afuaruSpawnable?: boolean) {
         if(locationId) {
             this.locationId = locationId;
-            this.territoryId = territoryId;
             this.locationName = locationName;
-            this.territoryName = territoryName;
+            this.territory = territory;
             this.recommendedLevel = recommendedLevel;
             this.recommendedAP = recommendedAP; 
             this.afuaruSpawnable = afuaruSpawnable;
         }
-
-        if(locationCount) 
-            this.locationCount = locationCount;
     }
 }
 

@@ -49,6 +49,20 @@ body {
     width: 100%;
 }
 
+.carouselTabContainer {
+    div:first-of-type {
+        height: 20%;
+        display: flex;
+        label {
+            font-weight: 800;
+            font-size: 2rem;
+        }
+    }
+    div:last-of-type {
+        height: 80%;
+    }
+}
+
 //# Fonts
 @font-face {
     font-family: 'Poly';
@@ -102,9 +116,14 @@ button {
 
 // ## Stopwatch-Time
 .stopwatch-time {
-    font-size: 8rem;
-    font-weight: 700;
     font-family: 'Poly';
+    font-weight: 700;
+    .regular {
+        font-size: 8rem;
+    }
+    .small {
+        font-size: 7rem;
+    }
 }
 
 // # PrimeNg Override
@@ -216,4 +235,8 @@ button {
             height: 100%;
         }
     }
+}
+
+.p-carousel-items-container {
+    height: 100%;
 }

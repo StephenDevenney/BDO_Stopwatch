@@ -170,6 +170,11 @@
     justify-content: space-between;
 }
 
+.s-column {
+    display: flex;
+    flex-direction: column;
+}
+
 // # Padding
 
 // ## All

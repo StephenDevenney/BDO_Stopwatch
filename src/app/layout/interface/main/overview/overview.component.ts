@@ -9,22 +9,13 @@ import { BaseComponent } from '../../../../shared/components/base.component';
 export class OverviewComponent extends BaseComponent implements OnInit {
 
   public isLoaded: boolean = false;
-  private carouselTabs: any[] = [{id: 1, label: "Trash Loot"},{ id: 2, label: "Location Filter" },{id: 3, label: "Agris"},{ id: 4, label: "Afuaru" }];
+  private carouselTabs: any[] = [{id: 1, label: "Top Locations"},{ id: 2, label: "Top Territories" },{id: 3, label: "Location"},{ id: 4, label: "Total" }];
 
   constructor(private injector: Injector) {
     super(injector);
   }
 
   async ngOnInit(): Promise<void> {
-    await this.loadTimeSlots();
     this.isLoaded = true;
-  }
-
-  public async loadTimeSlots(): Promise<void> {
-    await this.databaseService.getTimeSlots().catch(() => {
-
-    }).then((timeSlots: Array<TimeSlot>) => {
-      
-    });
   }
 }

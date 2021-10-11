@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { LocationHandler } from '../../../server/src/middleware/locationHandler';
+import { OverviewDataHandler } from '../../../server/src/middleware/overviewDataHandler';
 import { TimeSlotHandler } from '../../../server/src/middleware/timeSlotHandler';
 import { LocationsGrouped } from '../classes/app/locations';
 import { TimeSlot } from '../classes/app/timeSlot';
@@ -7,7 +7,7 @@ import { TimeSlot } from '../classes/app/timeSlot';
 @Injectable()
 export class DatabaseService {
     
-    constructor(private locationHandler: LocationHandler,
+    constructor(private overviewDataHandler: OverviewDataHandler,
                 private timeSlotHandler: TimeSlotHandler){
 
     }
@@ -16,11 +16,11 @@ export class DatabaseService {
         return await this.timeSlotHandler.addNewEntry(newEntry);
     }
 
-    public async getTimeSlots(): Promise<Array<TimeSlot>> {
-        return await this.timeSlotHandler.getTimeSlots();
+    public async getOverviewData(): Promise<void> {
+        return await this.overviewDataHandler.getOverviewData();
     }
 
     public async getLocations(): Promise<Array<LocationsGrouped>> {
-        return await this.locationHandler.getGroupedLocations();
+        return await this.timeSlotHandler.getGroupedLocations();
     }
 }

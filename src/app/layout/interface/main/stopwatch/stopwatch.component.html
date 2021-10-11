@@ -4,6 +4,6 @@
       <s-button *ngIf="stopwatch.isRunning === true" [buttonType]="enumUIService.ButtonTypeEnum.Icon" [iconType]="enumUIService.ButtonIconEnum.Stop"></s-button>
    </div>
    <div class="s-center h25">
-      <label class="stopwatch-time" [ngClass]="viewService.currentViewport !== viewService.ViewportEnum.Small ? 'mb5' : 'mt5'">{{ stopwatch.elapsedTime | stopwatch }}</label>
+      <label class="stopwatch-time" [ngClass]="viewService.currentViewport !== viewService.ViewportEnum.Small ? 'mb5' : 'mt5'"><span [ngClass]="stopwatch.elapsedTime > 36000 ? 'small' : 'regular'">{{ stopwatch.elapsedTime | stopwatch }}</span></label>
    </div>
 </div>
