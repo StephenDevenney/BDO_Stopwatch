@@ -6,7 +6,8 @@ import { TimeSlotContext } from '../../server/src/sqlContext/timeSlotContext';
 import { OverviewDataHandler } from '../../server/src/middleware/overviewDataHandler';
 import { TotalTimeContext } from '../../server/src/sqlContext/totalTimeContext';
 import { TerritoryContext } from '../../server/src/sqlContext/territoryContext';
-import { TopFiveContext } from 'src/server/src/sqlContext/topFiveContext';
+import { TopFiveContext } from '../../server/src/sqlContext/topFiveContext';
+import { LocationStatsContext } from '../../server/src/sqlContext/locationStatsContext';
 
 @NgModule({
     imports: [
@@ -25,7 +26,8 @@ import { TopFiveContext } from 'src/server/src/sqlContext/topFiveContext';
       TerritoryContext,
       TimeSlotContext,
       TotalTimeContext,
-      TopFiveContext
+      TopFiveContext,
+      LocationStatsContext
     ]
   })
   export class ServerModule { 

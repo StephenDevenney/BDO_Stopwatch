@@ -6,7 +6,7 @@ export class TerritoryContext {
   private territory: Territory = new Territory;
   
   public getAll(): Promise<Array<Territory>> {
-    const sql = `SELECT * FROM enum_territory WHERE territoryId != 1`;
+    const sql = `SELECT * FROM enum_territory`;
     const values = {};
 
     return TheDb.selectAll(sql, values).then((rows: any) => {

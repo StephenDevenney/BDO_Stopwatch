@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
-import { OverviewData, TopFive } from "src/app/shared/classes/app/overviewData";
+import { LocationStatsOverview, OverviewData, TopFive } from "../../../app/shared/classes/app/overviewData";
 import { LocationContext } from "../sqlContext/locationContext";
+import { LocationStatsContext } from "../sqlContext/locationStatsContext";
 import { TerritoryContext } from "../sqlContext/territoryContext";
 import { TimeSlotContext } from "../sqlContext/timeSlotContext";
 import { TopFiveContext } from "../sqlContext/topFiveContext";
@@ -11,7 +12,8 @@ export class OverviewDataHandler {
 
     constructor(private timeSlotContext: TimeSlotContext,
                         private totalTimeContext: TotalTimeContext,
-                        private topFiveContext: TopFiveContext) {}
+                        private topFiveContext: TopFiveContext,
+                        private locationStatsContext: LocationStatsContext) {}
 
     public async getOverviewData(): Promise<OverviewData> {
         let overviewData: OverviewData = new OverviewData;
@@ -26,8 +28,10 @@ export class OverviewDataHandler {
             overviewData.topTerritories = topFiveTerritories;
         });
 
-        // get allLocations
-
+            // get allLocations
+        await this.locationStatsContext.getAll().then((loc: LocationStatsOverview) => {
+            overviewData.allLocations = loc;
+        });
         // get timeData (Overall)
 
         return overviewData;
