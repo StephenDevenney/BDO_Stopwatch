@@ -240,3 +240,21 @@ button {
 .p-carousel-items-container {
     height: 100%;
 }
+
+.p-carousel .p-carousel-content .p-carousel-prev, .p-carousel .p-carousel-content .p-carousel-next {
+    background-color: $white;
+    border: 0.2rem solid $blue;
+}
+
+.p-carousel .p-carousel-content .p-carousel-prev:enabled:hover, .p-carousel .p-carousel-content .p-carousel-next:enabled:hover {
+    border-color: lighten($color: $blue, $amount: 5%);
+}
+.p-carousel .p-carousel-content .p-carousel-prev:focus, .p-carousel .p-carousel-content .p-carousel-next:focus {
+    box-shadow: none;
+}
+.p-carousel .p-carousel-indicators .p-carousel-indicator.p-highlight button {
+    background-color: $blue;
+}
+.p-link:focus {
+    box-shadow: none;
+}
