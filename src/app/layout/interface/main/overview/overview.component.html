@@ -83,7 +83,7 @@
             <div *ngIf="tab.id == 4" class="contentContainer">
                <div class="totalTimeGridContainer">
                   <div *ngFor="let gridItem of overviewData.totalTime" class="gridItem">
-                     <span *ngIf="gridItem.secs != 0 else emptySquare">
+                     <span *ngIf="gridItem != null else emptySquare">
                         <div class="s-center h25 title">
                            <label>{{ gridItem.label }}</label>
                         </div>

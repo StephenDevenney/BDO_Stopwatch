@@ -21,9 +21,8 @@ export class OverviewComponent extends BaseComponent implements OnInit {
     super(injector);
   }
 
-  async ngOnInit(): Promise<void> {
-    await this.loadOverviewData();
-    this.isLoaded = true;
+  ngOnInit(): void {
+    this.loadOverviewData();
   }
 
   private async loadOverviewData() {
@@ -31,8 +30,9 @@ export class OverviewComponent extends BaseComponent implements OnInit {
 
     }).then((_: OverviewData) => {
       this.overviewData = _;
-      this.overallTime = this.overviewData.totalTime.filter(t => t.label == "Total")[0].secs;
-    });
+      if(_.totalTime.length > 0)
+        this.overallTime = this.overviewData.totalTime.filter(t => t.label == "Total")[0].secs;
+    }).finally(() => { this.isLoaded = true; });
   }
 
   private loadLocation() {
@@ -44,3 +44,7 @@ export class OverviewComponent extends BaseComponent implements OnInit {
     });
   }
 }
+
+/*
+  TODO: fix total secs squares (async problem? on load repeatedly without refreshing app)
+*/

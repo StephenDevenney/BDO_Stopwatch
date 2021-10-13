@@ -14,20 +14,29 @@ export class TotalTimeContext {
           nm.push(new TotalTimeContext().fromRow(row));
         }
 
-        this.timeData.push(new TimeData("Total", nm[5]));
-        this.timeData.push(new TimeData("Month", nm[3]));
-        this.timeData.push(new TimeData("Week", nm[2]));
-        this.timeData.push(new TimeData("Today", nm[1]));
-        this.timeData.push(new TimeData("Average", nm[0]));
-        this.timeData.push(new TimeData("Year", nm[4]));
+        if(nm[5] != null)
+          this.timeData.push(new TimeData("Total", nm[5]));
+
+        if(nm[3] != null)
+          this.timeData.push(new TimeData("Month", nm[3]));
+
+        if(nm[2] != null)
+          this.timeData.push(new TimeData("Week", nm[2]));
+
+        if(nm[1] != null)
+          this.timeData.push(new TimeData("Today", nm[1]));
+
+        if(nm[0] != null)
+          this.timeData.push(new TimeData("Average", nm[0]));
+
+        if(nm[4] != null)
+          this.timeData.push(new TimeData("Year", nm[4]));
 
         return this.timeData;
       });
     }
     
       private fromRow(row: TimeDataNumbers): number {
-        if(row.average == null)
-          row.average = 0;
         return row.average;
       }
 }

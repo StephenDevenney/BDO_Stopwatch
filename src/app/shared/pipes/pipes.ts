@@ -107,7 +107,6 @@ export class StatsTimePipe implements PipeTransform {
 export class TotalPercentagePipe implements PipeTransform {
     transform(locationSecs: number, totalSecs: number): string {
         let percentage = ((locationSecs / totalSecs) * 100).toFixed(2);
-        console.log(percentage);
         return percentage + "%";
     }
 }

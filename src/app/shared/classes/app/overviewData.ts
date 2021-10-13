@@ -18,8 +18,8 @@ export class OverviewData {
 }
 
 export class TimeData {
-    public label: string = "";
-    public secs: number = 0;
+    public label: string;
+    public secs: number;
 
     constructor(label?: string, secs?: number) {
         if(label) {

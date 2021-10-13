@@ -1,6 +1,6 @@
 'use strict';
 // // Electron
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, ipcMain, shell } = require('electron');
 const windowStateKeeper = require('electron-window-state');
 const path = require('path');
 let waitBeforeClose = true;
@@ -21,7 +21,7 @@ if (devMode) {
 	});
 }
 
-let createWindow = () => {
+const createWindow = () => {
 	// Window State Keeper
 	let mainWindowState = windowStateKeeper({
 		defaultWidth: 1300,
@@ -84,4 +84,18 @@ app.on('activate', () => {
 	// On OS X it's common to re-create a window in the app when the
 	// dock icon is clicked and there are no other windows open.
 	if (mainWindow === null) createWindow();
+});
+
+app.on('web-contents-created', (event, contents) => {  
+	contents.setWindowOpenHandler(({ url }) => {    
+		// See the following item for considerations regarding what    
+		// URLs should be allowed through to shell.openExternal.    
+		if (isSafeForExternalOpen(url)) {      
+			setImmediate(() => {        
+				shell.openExternal(url)      
+			})    
+		}
+
+    return { action: 'deny' }  
+	})
 });
