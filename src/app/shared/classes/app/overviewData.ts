@@ -1,15 +1,13 @@
-import { Location } from "./locations";
-import { Territory } from "./locations";
-import { TimeSlot } from "./timeSlot";
+import { LocationsGrouped } from "./locations";
 
 
 export class OverviewData {
     public topLocations: Array<TopFive> = new Array<TopFive>();
     public topTerritories: Array<TopFive> = new Array<TopFive>();
-    public allLocations: LocationStatsOverview = new LocationStatsOverview;
+    public allLocations: Array<LocationsGrouped> = new Array<LocationsGrouped>();
     public totalTime: TimeData = new TimeData;
 
-    constructor(topLocations?: Array<TopFive>, topTerritories?: Array<TopFive>, allLocations?: LocationStatsOverview, totalTime?: TimeData) {
+    constructor(topLocations?: Array<TopFive>, topTerritories?: Array<TopFive>, allLocations?: Array<LocationsGrouped>, totalTime?: TimeData) {
         if(topLocations) {
             this.topLocations = topLocations;
             this.topTerritories = topTerritories;
@@ -21,16 +19,20 @@ export class OverviewData {
 
 export class TimeData {
     public average: number = 0;
+    public year: number = 0;
     public month: number = 0;
     public week: number = 0;
     public today: number = 0;
+    public total: number = 0;
 
-    constructor(average?: number, month?: number, week?: number, today?: number) {
+    constructor(average?: number, year?: number, month?: number, week?: number, today?: number, total?: number) {
         if(average) {
             this.average = average;
+            this.year = year;
             this.month = month;
             this.week = week;
             this.today = today;
+            this.total = total;
         }
     }
 }
@@ -49,11 +51,11 @@ export class TopFive {
     }
 }
 
-export class LocationStatsOverview {
-    public location: Array<LocationStats> = new Array<LocationStats>();
-    public territory: Array<TerritoryStats> = new Array<TerritoryStats>();
+export class RegionStats {
+    public location: LocationStats = new LocationStats;
+    public territory: TerritoryStats = new TerritoryStats;
     
-    constructor(location?: Array<LocationStats>, territory?: Array<TerritoryStats>) {
+    constructor(location?: LocationStats, territory?: TerritoryStats) {
         if(location) {
             this.location = location;
             this.territory = territory;

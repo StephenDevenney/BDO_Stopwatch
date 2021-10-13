@@ -1,19 +1,17 @@
 import { Injectable } from "@angular/core";
-import { LocationStatsOverview, OverviewData, TopFive } from "../../../app/shared/classes/app/overviewData";
-import { LocationContext } from "../sqlContext/locationContext";
-import { LocationStatsContext } from "../sqlContext/locationStatsContext";
-import { TerritoryContext } from "../sqlContext/territoryContext";
-import { TimeSlotContext } from "../sqlContext/timeSlotContext";
+import { OverviewData, TimeData, TopFive } from "../../../app/shared/classes/app/overviewData";
 import { TopFiveContext } from "../sqlContext/topFiveContext";
 import { TotalTimeContext } from "../sqlContext/totalTimeContext";
+import { TimeSlotHandler } from "./timeSlotHandler";
+import { Services } from "../../../app/shared/services/services";
 
 @Injectable()
 export class OverviewDataHandler {
 
-    constructor(private timeSlotContext: TimeSlotContext,
-                        private totalTimeContext: TotalTimeContext,
-                        private topFiveContext: TopFiveContext,
-                        private locationStatsContext: LocationStatsContext) {}
+    constructor(private totalTimeContext: TotalTimeContext,
+                private topFiveContext: TopFiveContext,
+                private timeSlotHandler: TimeSlotHandler,
+                private services: Services) {}
 
     public async getOverviewData(): Promise<OverviewData> {
         let overviewData: OverviewData = new OverviewData;
@@ -29,11 +27,13 @@ export class OverviewDataHandler {
         });
 
             // get allLocations
-        await this.locationStatsContext.getAll().then((loc: LocationStatsOverview) => {
-            overviewData.allLocations = loc;
-        });
-        // get timeData (Overall)
+        overviewData.allLocations = await this.timeSlotHandler.getGroupedLocations();
 
+            // get timeData (Overall)
+        await this.totalTimeContext.getData(this.services.getCurrentDate(), this.services.getWeekStartDate(), this.services.getMonthStartDate(), this.services.getYearStartDate()).then((totals: TimeData) => {
+            overviewData.totalTime = totals;
+        });
+        
         return overviewData;
     }
 }

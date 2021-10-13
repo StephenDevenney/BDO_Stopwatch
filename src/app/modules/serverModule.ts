@@ -8,6 +8,7 @@ import { TotalTimeContext } from '../../server/src/sqlContext/totalTimeContext';
 import { TerritoryContext } from '../../server/src/sqlContext/territoryContext';
 import { TopFiveContext } from '../../server/src/sqlContext/topFiveContext';
 import { LocationStatsContext } from '../../server/src/sqlContext/locationStatsContext';
+import { Services } from '../shared/services/services';
 
 @NgModule({
     imports: [
@@ -27,7 +28,8 @@ import { LocationStatsContext } from '../../server/src/sqlContext/locationStatsC
       TimeSlotContext,
       TotalTimeContext,
       TopFiveContext,
-      LocationStatsContext
+      LocationStatsContext,
+      Services
     ]
   })
   export class ServerModule { 

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-import { StopwatchPipe } from '../shared/pipes/pipes';
+import { StopwatchPipe, StatsTimePipe } from '../shared/pipes/pipes';
 import { StopwatchService } from '../shared/services/stopwatch.service';
 import { ViewService } from '../shared/services/view.service';
 import { LoadingService } from '../shared/services/loading.service';
@@ -16,16 +16,19 @@ import { ServerModule } from './serverModule';
     ServerModule
   ],
   declarations: [
-    StopwatchPipe
+    StopwatchPipe,
+    StatsTimePipe
   ],
   exports: [
     FormsModule,
     BrowserModule,
     BrowserAnimationsModule,
-    StopwatchPipe
+    StopwatchPipe,
+    StatsTimePipe
   ],
   providers: [
     StopwatchPipe,
+    StatsTimePipe,
     StopwatchService,
     ViewService,
     LoadingService,
