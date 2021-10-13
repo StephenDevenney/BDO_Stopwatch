@@ -1,5 +1,5 @@
 import { Component, Injector, OnInit } from '@angular/core';
-import { OverviewData, RegionStats, TimeData } from '../../../../shared/classes/app/overviewData';
+import { OverviewData, RegionStats } from '../../../../shared/classes/app/overviewData';
 import { Location } from '../../../../shared/classes/app/locations';
 import { BaseComponent } from '../../../../shared/components/base.component';
 

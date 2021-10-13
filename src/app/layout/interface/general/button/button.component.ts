@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Injector, Input, OnInit, Output } from '@angular/core';
+import { Component, Injector, Input, OnInit } from '@angular/core';
 import { BaseComponent } from '../../../../shared/components/base.component';
 import { InterfaceEnumService } from '../interface-enums/enum.service';
 import { ButtonIconEnum, ButtonTypeEnum } from '../interface-enums/enums/button';

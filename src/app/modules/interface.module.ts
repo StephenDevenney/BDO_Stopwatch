@@ -9,14 +9,12 @@ import { StopwatchComponent } from '../layout/interface/main/stopwatch/stopwatch
 import { ViewToggleComponent } from '../layout/interface/main/view-toggle/viewToggle.component';
 import { SharedModule } from './sharedModule';
 import { DropdownModule } from 'primeng/dropdown';
-import { InputSwitchModule } from 'primeng/inputswitch';
 import { CarouselModule } from 'primeng/carousel';
 
 @NgModule({
   imports: [
     SharedModule,
     DropdownModule,
-    InputSwitchModule,
     CarouselModule
   ],
   declarations: [
