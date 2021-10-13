@@ -28,7 +28,57 @@
                </div>
             </div>
             <div *ngIf="tab.id == 3" class="contentContainer">
-               <label>Location......</label>
+               <div class="s-center">
+                  <p-dropdown 
+                  [filter]="true" 
+                  filterBy="locationName"
+                  [options]="overviewData.allLocations" 
+                  [(ngModel)]="selectedLocation" 
+                  optionLabel="locationName" 
+                  placeholder="Select Location"
+                  (onChange)="loadLocation();"
+                  [group]="true">
+                     <ng-template let-group pTemplate="group">
+                        <div class="p-d-flex p-ai-center">
+                           <span>{{group.label}}</span>
+                        </div>
+                     </ng-template>
+                  </p-dropdown>
+               </div>
+               <div *ngIf="locationSelected" class="s-center h80">
+                  <div class="locationStatsContainer">
+                     <div class="s-flex">
+                        <div class="block"></div>
+                        <div class="itemNameContainer">
+                           <label>{{ selectedLocationStats.location.locationName }}:</label>
+                        </div>
+                        <div class="block"></div>
+                        <div class="timeContainer">
+                           <label [innerHTML]="selectedLocationStats.location.locationSecs | statsTime"></label>
+                        </div>
+                     </div>
+                     <div class="s-flex">
+                        <div class="block"></div>
+                        <div class="itemNameContainer">
+                           <label>% of Total Time:</label>
+                        </div>
+                        <div class="block"></div>
+                        <div class="timeContainer">
+                           <label>{{ selectedLocationStats.location.locationSecs | totalPercentage: overviewData.totalTime.total }}</label>
+                        </div>
+                     </div>
+                     <div class="s-flex">
+                        <div class="block"></div>
+                        <div class="itemNameContainer">
+                           <label>% of {{ selectedLocationStats.territory.territoryName }} Time:</label>
+                        </div>
+                        <div class="block"></div>
+                        <div class="timeContainer">
+                           <label>{{ selectedLocationStats.location.locationSecs | totalPercentage: selectedLocationStats.territory.territorySecs }}</label>
+                        </div>
+                     </div>
+                  </div>
+               </div>
             </div>
             <div *ngIf="tab.id == 4" class="contentContainer">
                <label>Totals......</label>

@@ -5,8 +5,7 @@
    <div class="s-center h25">
       <p-dropdown 
          [filter]="true" 
-         filterBy="locationName" 
-         class="w-100" 
+         filterBy="locationName"
          [options]="locationsGrouped" 
          [(ngModel)]="selectedLocation" 
          optionLabel="locationName" 
@@ -19,14 +18,6 @@
             </div>
         </ng-template>
       </p-dropdown>
-      <!-- <span *ngIf="locationSelected && selectedLocation.questingCompatible" [ngClass]="{ 'ml3': selectedLocation.questingCompatible }">
-            <div class="s-center">
-               <label class="switch-text">Also Questing</label>
-            </div>
-            <div class="s-center">
-               <p-inputSwitch [(ngModel)]="addToQuestingTime" ngDefaultControl></p-inputSwitch>
-            </div>
-      </span> -->
    </div>
    <div class="h25 s-center">
       <s-button class="mr1" [buttonType]="enumUIService.ButtonTypeEnum.Primary" text="Add" (click)="addTime();"></s-button>
@@ -34,7 +25,3 @@
       <s-button [buttonType]="enumUIService.ButtonTypeEnum.Primary" text="Resume" (click)="stopwatch.startStopwatch();"></s-button>
    </div>
 </span>
-
-<!-- 
-   TODO: Add Elvia Realm Check
- -->
