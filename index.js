@@ -38,6 +38,7 @@ let createWindow = () => {
 			nodeIntegration: true,
 			enableRemoteModule: true,
 			contextIsolation: false,
+			sandbox: false
 		}
 	});
 
