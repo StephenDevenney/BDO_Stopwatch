@@ -19,7 +19,8 @@
         ## Headers
         ## Labels
         ## Button 
-        ## Stopwatch-Time
+    # Stopwatch-Time
+    # Scrollbar
     # PrimeNg Override
 */
 
@@ -50,7 +51,7 @@ body {
 }
 
 .carouselTabContainer {
-    div:first-of-type {
+    .titleContainer {
         height: 20%;
         display: flex;
         label {
@@ -58,9 +59,43 @@ body {
             font-size: 2rem;
         }
     }
-    div:last-of-type {
+    .contentContainer {
         height: 80%;
+        overflow: auto;
     }
+}
+
+.topFiveContainer {
+    display: flex;
+    background-color: $white;
+    border: 0.8rem solid $blue;
+    border-radius: 1.8rem;
+    margin-bottom: 2rem;
+    margin-right: 1rem;
+    overflow: hidden;
+
+    .itemNameContainer {
+        width: 50%;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        display: flex;
+        align-items: center;
+        label {
+            font-weight: 800;
+        }
+    }
+    .timeContainer {    
+        width: 40%;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+    .block {
+        width: 10%
+    }
+    .timeContainer label,.itemNameContainer label {
+        font-size: 1.4rem;
+    }
+
 }
 
 //# Fonts
@@ -125,6 +160,22 @@ button {
         font-size: 7rem;
     }
 }
+
+// # Scrollbar
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: lighten($color: $blue, $amount: 5%);
+    border-radius: 20px;
+    border: transparent;
+    &:hover {
+        background-color: $blue;
+    }
+  }
 
 // # PrimeNg Override
 .p-dropdown,.p-inputnumber, .p-inputtext {
@@ -232,7 +283,7 @@ button {
     .p-carousel, .p-carousel-content {
         height: 100%;
         .p-carousel-container {
-            height: 100%;
+            height: 90%;
         }
     }
 }

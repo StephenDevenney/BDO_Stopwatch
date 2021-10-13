@@ -9,7 +9,7 @@ import { BaseComponent } from '../../../../shared/components/base.component';
 export class OverviewComponent extends BaseComponent implements OnInit {
 
   private isLoaded: boolean = false;
-  private carouselTabs: any[] = [{id: 1, label: "Top Locations"},{ id: 2, label: "Top Territories" },{id: 3, label: "Location"},{ id: 4, label: "Total" }];
+  private carouselTabs: any[] = [{id: 1, label: "Top 5 Locations"},{ id: 2, label: "Top 5 Territories" },{id: 3, label: "Location"},{ id: 4, label: "Total" }];
   private overviewData: OverviewData;
 
   constructor(private injector: Injector) {

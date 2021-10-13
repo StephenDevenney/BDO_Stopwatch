@@ -2,11 +2,36 @@
    <p-carousel [value]="carouselTabs" [numVisible]="1" [numScroll]="1">
       <ng-template let-tab pTemplate="tab">
          <span class="carouselTabContainer">
-            <div>
+            <div class="titleContainer">
                <label class="">{{tab.label}}</label>
             </div>
-            <div>
-               <label>Test......</label>
+            <div *ngIf="tab.id == 1" class="contentContainer">
+               <div *ngFor="let loc of overviewData.topLocations;" class="topFiveContainer">
+                  <div class="block"></div>
+                  <div class="itemNameContainer">
+                     <label>{{ loc.itemName }}:</label>
+                  </div>
+                  <div class="timeContainer">
+                     <label [innerHTML]="loc.secs | statsTime"></label>
+                  </div>
+               </div>
+            </div>
+            <div *ngIf="tab.id == 2" class="contentContainer">
+               <div *ngFor="let ter of overviewData.topTerritories;" class="topFiveContainer">
+                  <div class="block"></div>
+                  <div class="itemNameContainer">
+                     <label>{{ ter.itemName }}:</label>
+                  </div>
+                  <div class="timeContainer">
+                     <label [innerHTML]="ter.secs | statsTime"></label>
+                  </div>
+               </div>
+            </div>
+            <div *ngIf="tab.id == 3" class="contentContainer">
+               <label>Location......</label>
+            </div>
+            <div *ngIf="tab.id == 4" class="contentContainer">
+               <label>Totals......</label>
             </div>
          </span>
       </ng-template>
