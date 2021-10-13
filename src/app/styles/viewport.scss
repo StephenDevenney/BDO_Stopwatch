@@ -29,8 +29,8 @@
 
 // # Tall
 .tall {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 100%;
+    grid-template-rows: 50% 50%;
 
     .grid-item-container:first-child {
         border-bottom: 8px solid #5484BC;
