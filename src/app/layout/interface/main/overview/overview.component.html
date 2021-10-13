@@ -64,7 +64,7 @@
                         </div>
                         <div class="block"></div>
                         <div class="timeContainer">
-                           <label>{{ selectedLocationStats.location.locationSecs | totalPercentage: overviewData.totalTime.total }}</label>
+                           <label>{{ selectedLocationStats.location.locationSecs | totalPercentage: overallTime }}</label>
                         </div>
                      </div>
                      <div class="s-flex">
@@ -81,7 +81,26 @@
                </div>
             </div>
             <div *ngIf="tab.id == 4" class="contentContainer">
-               <label>Totals......</label>
+               <div class="totalTimeGridContainer">
+                  <div *ngFor="let gridItem of overviewData.totalTime" class="gridItem">
+                     <span *ngIf="gridItem.secs != 0 else emptySquare">
+                        <div class="s-center h25 title">
+                           <label>{{ gridItem.label }}</label>
+                        </div>
+                        <div class="s-center h75 time">
+                           <label [innerHTML]="gridItem.secs | statsTime"></label>
+                        </div>
+                     </span>
+                     <ng-template #emptySquare>
+                        <div class="s-center h25 title">
+                           <label>{{ gridItem.label }}</label>
+                        </div>
+                        <div class="s-center h75 time">
+                           <label>-</label>
+                        </div>
+                     </ng-template>
+                  </div>
+               </div>
             </div>
          </span>
       </ng-template>

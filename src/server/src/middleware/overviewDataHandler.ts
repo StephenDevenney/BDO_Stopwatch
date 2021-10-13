@@ -59,7 +59,7 @@ export class OverviewDataHandler {
         overviewData.allLocations = locationNamesEnum;
 
             // get timeData (Overall)
-        await this.totalTimeContext.getData(this.services.getCurrentDate(), this.services.getWeekStartDate(), this.services.getMonthStartDate(), this.services.getYearStartDate()).then((totals: TimeData) => {
+        await this.totalTimeContext.getData(this.services.getCurrentDate(), this.services.getWeekStartDate(), this.services.getMonthStartDate(), this.services.getYearStartDate()).then((totals: Array<TimeData>) => {
             overviewData.totalTime = totals;
         });
         

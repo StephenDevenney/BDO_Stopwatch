@@ -5,9 +5,9 @@ export class OverviewData {
     public topLocations: Array<TopFive> = new Array<TopFive>();
     public topTerritories: Array<TopFive> = new Array<TopFive>();
     public allLocations: Array<LocationsGrouped> = new Array<LocationsGrouped>();
-    public totalTime: TimeData = new TimeData;
+    public totalTime: Array<TimeData> = new Array<TimeData>();
 
-    constructor(topLocations?: Array<TopFive>, topTerritories?: Array<TopFive>, allLocations?: Array<LocationsGrouped>, totalTime?: TimeData) {
+    constructor(topLocations?: Array<TopFive>, topTerritories?: Array<TopFive>, allLocations?: Array<LocationsGrouped>, totalTime?: Array<TimeData>) {
         if(topLocations) {
             this.topLocations = topLocations;
             this.topTerritories = topTerritories;
@@ -18,6 +18,18 @@ export class OverviewData {
 }
 
 export class TimeData {
+    public label: string = "";
+    public secs: number = 0;
+
+    constructor(label?: string, secs?: number) {
+        if(label) {
+            this.label = label;
+            this.secs = secs;
+        }
+    }
+}
+
+export class TimeDataNumbers {
     public average: number = 0;
     public year: number = 0;
     public month: number = 0;

@@ -93,7 +93,7 @@ export class TheDb {
 
     public static rollbackTxn(reason: Error): Promise<void> {
         return new Promise<void>((_resolve, reject) => {
-            console.log('Rollback transaction');
+            // console.log('Rollback transaction');
             TheDb.db.run('ROLLBACK', (err: any) => {
                 if (err) {
                     console.log(err);
@@ -192,7 +192,7 @@ export class TheDb {
     public static createDb(dbPath: string): Promise<string> {
         dbPath += path.extname(dbPath) === '.db' ? '' : '.db';
 
-        console.log('Creating  databae: ', dbPath);
+        // console.log('Creating  databae: ', dbPath);
 
         const dataPath = path.join(Settings.dbFolder, `database.init.json`);
         const schemaPath = path.join(Settings.dbFolder, `database.db.sql`);
@@ -209,18 +209,18 @@ export class TheDb {
             .then(() => TheDb.importJson(dataPath, false))
             .then(TheDb.setPragmaVersion)
             .then(() => {
-                console.log('Database created.');
+                // console.log('Database created.');
                 return dbPath;
             });
     }
 
     public static openDb(dbPath: string): Promise<void> {
-        console.log('Opening database: ', dbPath);
+        // console.log('Opening database: ', dbPath);
         return TheDb.getDb(dbPath)
             .then(() => TheDb.setPragmaForeignKeys(true))
             .then(TheDb.upgradeDb)
             .then(() => {
-                console.log('Database opened');
+                // console.log('Database opened');
                 return Promise.resolve();
             });
     }
@@ -231,10 +231,10 @@ export class TheDb {
         }
         return new Promise<void>((resolve, reject) => {
             TheDb.db.close((err: any) => {
-                console.log('Closing current Db');
+                // console.log('Closing current Db');
                 if (err) {
                     reject(err);
-                    console.log('Db not closed');
+                    // console.log('Db not closed');
                 } else {
                     resolve();
                 }
@@ -325,7 +325,7 @@ export class TheDb {
                 if (err) {
                     reject(err);
                 } else {
-                    console.log(`PRAGMA foreign_keys = ${value}`);
+                    // console.log(`PRAGMA foreign_keys = ${value}`);
                     resolve();
                 }
             });
@@ -350,7 +350,7 @@ export class TheDb {
                 if (err) {
                     reject(err);
                 } else {
-                    console.log(`PRAGMA version = ${TheDb.version}`);
+                    // console.log(`PRAGMA version = ${TheDb.version}`);
                     resolve();
                 }
             });

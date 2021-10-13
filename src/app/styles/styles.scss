@@ -133,6 +133,38 @@ body {
     }
 }
 
+.totalTimeGridContainer {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50% 50% 50%;
+    height: 90%;
+    width: 90%;
+    grid-column-gap: 1rem;
+    grid-row-gap: 1rem;
+
+    .gridItem {
+        height: 100%;
+        width: 100%;
+        background-color: $white;
+        border: 0.8rem solid $blue;
+        border-radius: 1.8rem;
+
+        .title {
+            background-color: $blue;
+            label {
+                font-weight: 800;
+                font-size: 1.5rem;
+                color: $white;
+            }
+        }
+        .time {
+            label {
+                font-size: 1.5rem;
+            }
+        }
+    }
+}
+
 //# Fonts
 @font-face {
     font-family: 'Poly';
