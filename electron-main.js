@@ -1,4 +1,5 @@
 'use strict';
+require('dotenv').config();
 // // Electron
 const { app, BrowserWindow, ipcMain, shell } = require('electron');
 const windowStateKeeper = require('electron-window-state');
@@ -6,6 +7,7 @@ const path = require('path');
 let waitBeforeClose = true;
 let mainWindow;
 const devMode = /electron/.test(path.basename(app.getPath('exe'), '.exe'));
+const { autoUpdater } = require("electron-updater");
 
 if (devMode) {
 	// Set appname and userData to indicate development environment
@@ -69,7 +71,15 @@ const createWindow = () => {
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
-app.on('ready', createWindow);
+// app.on('ready', createWindow);
+app.on('ready', function () {
+  
+	createWindow();
+	//Make sure in dev. enviroment, auto updater won't be called.
+	if (process.env.NODE_ENV !== "dev") {
+	  autoUpdater.checkForUpdates();
+	}
+})
 
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {
@@ -98,4 +108,36 @@ app.on('web-contents-created', (event, contents) => {
 
     return { action: 'deny' }  
 	})
+});
+
+
+function sendStatusToWindow(text) {
+	mainWindow.webContents.send('message', text);
+}
+
+autoUpdater.on('checking-for-update', () => {
+	sendStatusToWindow('Checking for update...');
+});
+autoUpdater.on('update-available', (ev, info) => {
+	sendStatusToWindow('Update available.');
+});
+autoUpdater.on('update-not-available', (ev, info) => {
+	sendStatusToWindow('Update not available.');
+});
+autoUpdater.on('error', (ev, err) => {
+	sendStatusToWindow('Error in auto-updater.');
+});
+autoUpdater.on('download-progress', (ev, progressObj) => {
+	sendStatusToWindow('Download progress...');
+});
+
+autoUpdater.on('update-downloaded', (ev, info) => {
+	// Wait 5 seconds, then quit and install
+	// In your application, you don't need to wait 5 seconds.
+	// You could call autoUpdater.quitAndInstall(); immediately
+	sendStatusToWindow('Update downloaded; will install in 5 seconds');
+	mainWindow.setClosable(true);
+	setTimeout(function () {
+	  autoUpdater.quitAndInstall();
+	}, 5000)
 });

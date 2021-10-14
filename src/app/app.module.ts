@@ -9,7 +9,8 @@ import { APIInterceptor } from './shared/classes/api.interceptor';
 import { NgxUiLoaderModule, NgxUiLoaderConfig, POSITION, SPINNER, PB_DIRECTION } from 'ngx-ui-loader';
 import { InterfaceModule } from './modules/interface.module';
 import { PageModule } from './modules/page.module';
-import { SharedModule } from './modules/sharedModule';
+import { SharedModule } from './modules/shared.module';
+import { DialogModule } from 'primeng/dialog';
 
 /*
   bgs = bottomRight Small loader
@@ -41,6 +42,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     AppRoutingModule,
     SharedModule,
     InterfaceModule,
+    DialogModule,
     PageModule,
     HttpClientModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig)

@@ -1,7 +1,7 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { PageComponent } from '../layout/page/page.component';
 import { InterfaceModule } from './interface.module';
-import { SharedModule } from './sharedModule';
+import { SharedModule } from './shared.module';
 
 @NgModule({
   declarations: [

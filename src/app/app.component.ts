@@ -6,6 +6,7 @@ import * as fs from 'fs';
 import { remote, SaveDialogSyncOptions } from 'electron';
 import { Title } from '@angular/platform-browser';
 import { BaseComponent } from './shared/components/base.component';
+import { ipcRenderer } from 'electron';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,8 @@ export class AppComponent extends BaseComponent {
     private title = 'BDO Stopwatch';
     private isLoaded = false;
     private innerWidth: any;
+    private displayBasic: boolean = false;
+    private basicText: string = "";
 
     constructor(private injector: Injector,
                 private route: ActivatedRoute,
@@ -96,3 +99,9 @@ export class AppComponent extends BaseComponent {
         await this.router.navigate(["page"]);
     }
 }
+
+
+ipcRenderer.on('message', function (event, text) {
+  this.basicText = text;
+  this.displayBasic = true;
+});

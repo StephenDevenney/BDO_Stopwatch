@@ -1,4 +1,14 @@
 <ngx-ui-loader></ngx-ui-loader>
+<p-dialog header="Update" [(visible)]="displayBasic" [style]="{width: '50vw'}" [closable]="false">
+  <p>
+    Update has been installed.
+  </p>
+  <ng-template pTemplate="footer">
+    <div class="s-center">
+      <button class="btn btn-primary small-text" (click)="displayBasic = false;">Continue</button>
+    </div>
+  </ng-template>
+</p-dialog>
 <div class="app-router" *ngIf="isLoaded">
   <router-outlet></router-outlet>
 </div>

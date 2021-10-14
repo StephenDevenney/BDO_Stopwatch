@@ -7,7 +7,7 @@ import { AddTimeComponent } from '../layout/interface/main/add-time/addTime.comp
 import { OverviewComponent } from '../layout/interface/main/overview/overview.component';
 import { StopwatchComponent } from '../layout/interface/main/stopwatch/stopwatch.component';
 import { ViewToggleComponent } from '../layout/interface/main/view-toggle/viewToggle.component';
-import { SharedModule } from './sharedModule';
+import { SharedModule } from './shared.module';
 import { DropdownModule } from 'primeng/dropdown';
 import { CarouselModule } from 'primeng/carousel';
 

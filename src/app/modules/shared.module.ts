@@ -8,7 +8,7 @@ import { StopwatchService } from '../shared/services/stopwatch.service';
 import { ViewService } from '../shared/services/view.service';
 import { LoadingService } from '../shared/services/loading.service';
 import { DatabaseService } from '../shared/services/database.service';
-import { ServerModule } from './serverModule';
+import { ServerModule } from './server.module';
 
 @NgModule({
   imports: [
