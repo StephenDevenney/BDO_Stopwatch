@@ -130,14 +130,3 @@ autoUpdater.on('error', (ev, err) => {
 autoUpdater.on('download-progress', (ev, progressObj) => {
 	sendStatusToWindow('Download progress...');
 });
-
-autoUpdater.on('update-downloaded', (ev, info) => {
-	// Wait 5 seconds, then quit and install
-	// In your application, you don't need to wait 5 seconds.
-	// You could call autoUpdater.quitAndInstall(); immediately
-	sendStatusToWindow('Update downloaded; will install in 5 seconds');
-	mainWindow.setClosable(true);
-	setTimeout(function () {
-	  autoUpdater.quitAndInstall();
-	}, 5000)
-});

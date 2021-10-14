@@ -6,7 +6,6 @@ import * as fs from 'fs';
 import { remote, SaveDialogSyncOptions } from 'electron';
 import { Title } from '@angular/platform-browser';
 import { BaseComponent } from './shared/components/base.component';
-import { ipcRenderer } from 'electron';
 
 @Component({
   selector: 'app-root',
@@ -99,9 +98,3 @@ export class AppComponent extends BaseComponent {
         await this.router.navigate(["page"]);
     }
 }
-
-
-ipcRenderer.on('message', function (event, text) {
-  this.basicText = text;
-  this.displayBasic = true;
-});
