@@ -44,7 +44,3 @@ export class OverviewComponent extends BaseComponent implements OnInit {
     });
   }
 }
-
-/*
-  TODO: fix total secs squares (async problem? on load repeatedly without refreshing app)
-*/
