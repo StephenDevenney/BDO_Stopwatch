@@ -1,6 +1,8 @@
 # BDO_Stopwatch
 Track hours of PvE combat grinding in the MMORPG Black Desert Online. 
 
+Lite version of [BDO Visualiser](https://github.com/StephenDevenney/BDO_Visualiser) which is currently on pause.
+
 ## Startup
 - npm ci
 - npm run build:once / npm run build:watch
