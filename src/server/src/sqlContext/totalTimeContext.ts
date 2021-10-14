@@ -10,6 +10,7 @@ export class TotalTimeContext {
     
       return await TheDb.selectAll(sql, values).then((rows: any) => {
         let nm: Array<number> = new Array<number>();
+        this.timeData = new Array<TimeData>();
         for (const row of rows) {
           nm.push(new TotalTimeContext().fromRow(row));
         }

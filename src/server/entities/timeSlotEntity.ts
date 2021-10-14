@@ -6,7 +6,7 @@ export class TimeSlotEntity {
     public recommendedLevel: string = "";
     public recommendedAP: string = "";
     public afuaruSpawnable: boolean = false;
-    public secs?: number = 0;
+    public secs: number = 0;
     public dateCreated: string = "";
 
     constructor(locationId?: number, locationName?: string, territoryId?: number, territoryName?: string, recommendedLevel?: string, recommendedAP?: string, afuaruSpawnable?: boolean, secs?: number, dateCreated?: string) {
