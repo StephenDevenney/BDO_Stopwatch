@@ -1,4 +1,4 @@
 export enum EnumCount {
-    LocationCount = 62,
+    LocationCount = 63,
     TerritoryCount = 8
 }

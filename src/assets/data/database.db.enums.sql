@@ -102,3 +102,7 @@ INSERT INTO enum_locations (locationName, FK_territoryId, recommendedAP) VALUES 
 INSERT INTO enum_locations (locationName, FK_territoryId, recommendedAP) VALUES ('Olun''s Valley', 6, '300');
 INSERT INTO enum_locations (locationName, FK_territoryId, recommendedAP) VALUES ('Thornwood Forest', 6, '250');
 INSERT INTO enum_locations (locationName, FK_territoryId, recommendedAP) VALUES ('Tunkuta (Turo''s)', 6, '270');
+
+
+-- Updates
+INSERT INTO enum_locations (locationName, FK_territoryId, recommendedAP) VALUES ('Abandoned Monastery', 2, '280');
