@@ -7,7 +7,7 @@ export class LocationContext {
   
         // GET Locations
     public async getAll(): Promise<Array<Location>> {
-        const sql = `SELECT enum_locations.locationId, enum_territory.territoryId, enum_locations.locationName, enum_territory.territoryName, enum_locations.recommendedLevel, enum_locations.recommendedAP, enum_locations.afuaruSpawnable FROM enum_locations INNER JOIN enum_territory ON enum_territory.territoryId = enum_locations.FK_territoryId`;
+        const sql = `SELECT enum_locations.locationId, enum_territory.territoryId, enum_locations.locationName, enum_territory.territoryName, enum_locations.recommendedLevel, enum_locations.recommendedAP, enum_locations.afuaruSpawnable FROM enum_locations INNER JOIN enum_territory ON enum_territory.territoryId = enum_locations.FK_territoryId ORDER BY territoryName ASC, locationName ASC`;
         const values = {};
     
         return await TheDb.selectAll(sql, values).then((rows: any) => {
@@ -37,7 +37,7 @@ export class LocationContext {
 
         // Get Locations With TimeStamps
     public async getInUse() {
-        const sql = `SELECT enum_locations.locationId, enum_territory.territoryId, enum_locations.locationName, enum_territory.territoryName, enum_locations.recommendedLevel, enum_locations.recommendedAP, enum_locations.afuaruSpawnable FROM enum_locations INNER JOIN enum_territory ON enum_territory.territoryId = enum_locations.FK_territoryId INNER JOIN data_log ON data_log.FK_locationId == enum_locations.locationId GROUP BY locationId ORDER BY locationId`;
+        const sql = `SELECT enum_locations.locationId, enum_territory.territoryId, enum_locations.locationName, enum_territory.territoryName, enum_locations.recommendedLevel, enum_locations.recommendedAP, enum_locations.afuaruSpawnable FROM enum_locations INNER JOIN enum_territory ON enum_territory.territoryId = enum_locations.FK_territoryId INNER JOIN data_log ON data_log.FK_locationId == enum_locations.locationId GROUP BY locationId ORDER BY territoryName ASC, locationName ASC`;
         const values = {};
     
         return await TheDb.selectAll(sql, values).then((rows: any) => {

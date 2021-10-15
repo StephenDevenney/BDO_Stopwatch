@@ -8,6 +8,7 @@ let waitBeforeClose = true;
 let mainWindow;
 const devMode = /electron/.test(path.basename(app.getPath('exe'), '.exe'));
 const { autoUpdater } = require("electron-updater");
+let updateAvailable = false;
 
 if (devMode) {
 	// Set appname and userData to indicate development environment
@@ -85,11 +86,10 @@ app.on('ready', function () {
 
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {
-	// On OS X it is common for applications and their menu bar
-	// to stay active until the user quits explicitly with Cmd + Q
-	if (process.platform !== 'darwin') {
-		app.quit();
-	}
+	if(updateAvailable == true)
+		autoUpdater.quitAndInstall();
+
+	app.quit();
 });
 
 app.on('activate', () => {
@@ -111,28 +111,6 @@ app.on('web-contents-created', (event, contents) => {
     return { action: 'deny' }  
 	})
 });
-
-
-function sendStatusToWindow(text) {
-	// mainWindow.webContents.send('message', text);
-}
-
-autoUpdater.on('checking-for-update', () => {
-	// sendStatusToWindow('Checking for update...');
-});
-autoUpdater.on('update-available', (ev, info) => {
-	// sendStatusToWindow('Update available.');
-});
-autoUpdater.on('update-not-available', (ev, info) => {
-	// sendStatusToWindow('Update not available.');
-});
-autoUpdater.on('error', (ev, err) => {
-	// sendStatusToWindow('Error in auto-updater.');
-});
-autoUpdater.on('download-progress', (ev, progressObj) => {
-	// sendStatusToWindow('Download progress...');
-});
 autoUpdater.on('update-downloaded', (ev, info) => {
-	// mainWindow.setClosable(true);
-	// autoUpdater.quitAndInstall();
+	updateAvailable = true;
 });

@@ -1,6 +1,6 @@
 {
   "name": "bdo-stopwatch",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "main": "./electron-main.js",
   "description": "stopwatch app for MMORPG black desert online",
   "author": {
