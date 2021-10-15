@@ -78,6 +78,8 @@ app.on('ready', function () {
 	//Make sure in dev. enviroment, auto updater won't be called.
 	if (process.env.NODE_ENV !== "dev") {
 	  autoUpdater.checkForUpdates();
+	  autoUpdater.autoDownload = true;
+	  autoUpdater.autoInstallOnAppQuit = true;
 	}
 })
 
@@ -112,21 +114,25 @@ app.on('web-contents-created', (event, contents) => {
 
 
 function sendStatusToWindow(text) {
-	mainWindow.webContents.send('message', text);
+	// mainWindow.webContents.send('message', text);
 }
 
 autoUpdater.on('checking-for-update', () => {
-	sendStatusToWindow('Checking for update...');
+	// sendStatusToWindow('Checking for update...');
 });
 autoUpdater.on('update-available', (ev, info) => {
-	sendStatusToWindow('Update available.');
+	// sendStatusToWindow('Update available.');
 });
 autoUpdater.on('update-not-available', (ev, info) => {
-	sendStatusToWindow('Update not available.');
+	// sendStatusToWindow('Update not available.');
 });
 autoUpdater.on('error', (ev, err) => {
-	sendStatusToWindow('Error in auto-updater.');
+	// sendStatusToWindow('Error in auto-updater.');
 });
 autoUpdater.on('download-progress', (ev, progressObj) => {
-	sendStatusToWindow('Download progress...');
+	// sendStatusToWindow('Download progress...');
+});
+autoUpdater.on('update-downloaded', (ev, info) => {
+	// mainWindow.setClosable(true);
+	// autoUpdater.quitAndInstall();
 });

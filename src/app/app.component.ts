@@ -40,20 +40,24 @@ export class AppComponent extends BaseComponent {
         this.viewService.determineViewport(window.innerWidth, window.innerHeight);
     }
 
-    private openDb(filename: string) {
-        TheDb.openDb(filename)
+    private async openDb(filename: string) {
+        this.loader.start();
+        await TheDb.openDb(filename)
         .then(() => {
             if (!Settings.hasFixedDbLocation) {
                 Settings.dbPath = filename;
                 Settings.write();
             }
         })
-        .then(() => {
-          this.loadApplication();
+        .then(async () => {
+          await this.loadApplication();
         })
         .catch((reason) => {
             // Handle errors
             console.log('Error occurred while opening database: ', reason);
+            
+        }).finally(() => {
+            this.loader.stop();
         });
     }
 
@@ -76,15 +80,15 @@ export class AppComponent extends BaseComponent {
             return;
         }
 
-        TheDb.createDb(filename)
+        await TheDb.createDb(filename)
         .then((dbPath) => {
             if (!Settings.hasFixedDbLocation) {
                 Settings.dbPath = dbPath;
                 Settings.write();
             }
         })
-        .then(() => {
-          this.loadApplication();
+        .then(async () => {
+          await this.loadApplication();
         })
         .catch((reason) => {
             console.log(reason);

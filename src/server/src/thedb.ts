@@ -2,6 +2,8 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 import { Database } from 'sqlite3';
+import { EnumCountEntity } from '../entities/enumCountEntity';
+import { EnumCount } from '../enums/enumCountEnum';
 import { Settings } from './settings';
 
 export interface IDbResult {
@@ -19,8 +21,9 @@ export class TheDb {
     private static readonly version = 1;
     private static db: Database;
 
-    public static selectOne(sql: string, values: {}): Promise<{}> {
-        return new Promise<{}>((resolve, reject) => {
+
+    public static async selectOne(sql: string, values: {}): Promise<{}> {
+        return await new Promise<{}>((resolve, reject) => {
             TheDb.db.get(sql, values, (err: any, row: any) => {
                 if (err) {
                     reject(err);
@@ -31,8 +34,8 @@ export class TheDb {
         });
     }
 
-    public static selectAll(sql: string, values: {}): Promise<Array<{}>> {
-        return new Promise<Array<{}>>((resolve, reject) => {
+    public static async selectAll(sql: string, values: {}): Promise<Array<{}>> {
+        return await new Promise<Array<{}>>((resolve, reject) => {
             TheDb.db.all(sql, values, (err: any, rows: any) => {
                 if (err) {
                     reject(err);
@@ -43,20 +46,20 @@ export class TheDb {
         });
     }
 
-    public static insert(sql: string, values: {}): Promise<IDbResult> {
-        return TheDb.change(sql, values);
+    public static async insert(sql: string, values: {}): Promise<IDbResult> {
+        return await TheDb.change(sql, values);
     }
 
-    public static update(sql: string, values: {}): Promise<IDbResult> {
-        return TheDb.change(sql, values);
+    public static async update(sql: string, values: {}): Promise<IDbResult> {
+        return await TheDb.change(sql, values);
     }
 
-    public static delete(sql: string, values: {}): Promise<IDbResult> {
-        return TheDb.change(sql, values);
+    public static async delete(sql: string, values: {}): Promise<IDbResult> {
+        return await TheDb.change(sql, values);
     }
 
-    public static query(sql: string): Promise<void> {
-        return new Promise<void>((resolve, reject) => {
+    public static async query(sql: string): Promise<void> {
+        return await new Promise<void>((resolve, reject) => {
             TheDb.db.run(sql, {}, (err: any) => {
                 if (err) {
                     reject(err);
@@ -67,8 +70,8 @@ export class TheDb {
         });
     }
 
-    public static beginTxn(): Promise<void> {
-        return new Promise<void>((resolve, reject) => {
+    public static async beginTxn(): Promise<void> {
+        return await new Promise<void>((resolve, reject) => {
             TheDb.db.run('BEGIN', (err: any) => {
                 if (err) {
                     reject(err);
@@ -79,8 +82,8 @@ export class TheDb {
         });
     }
 
-    public static commitTxn(): Promise<void> {
-        return new Promise<void>((resolve, reject) => {
+    public static async commitTxn(): Promise<void> {
+        return await new Promise<void>((resolve, reject) => {
             TheDb.db.run('COMMIT', (err: any) => {
                 if (err) {
                     reject(err);
@@ -91,8 +94,8 @@ export class TheDb {
         });
     }
 
-    public static rollbackTxn(reason: Error): Promise<void> {
-        return new Promise<void>((_resolve, reject) => {
+    public static async rollbackTxn(reason: Error): Promise<void> {
+        return await new Promise<void>((_resolve, reject) => {
             // console.log('Rollback transaction');
             TheDb.db.run('ROLLBACK', (err: any) => {
                 if (err) {
@@ -105,7 +108,7 @@ export class TheDb {
         });
     }
 
-    public static importJson(filename: string, disableForeignKeys: boolean): Promise<void> {
+    public static async importJson(filename: string, disableForeignKeys: boolean): Promise<void> {
         const data: { version: number, tables: { [key: string]: Array<{}> } } = JSON.parse(fs.readFileSync(filename, 'utf8'));
         const tableNames = Object.keys(data.tables);
         const deletes: Array<Promise<IDbResult>> = [];
@@ -113,7 +116,7 @@ export class TheDb {
 
         let foreignKeys: boolean;
 
-        return TheDb.getPragmaForeignKeys()
+        return await TheDb.getPragmaForeignKeys()
             .then((value) => {
                 foreignKeys = value;
                 if (foreignKeys === !disableForeignKeys) {
@@ -159,13 +162,13 @@ export class TheDb {
             });
     }
 
-    public static exportJson(filename: string): Promise<void> {
+    public static async exportJson(filename: string): Promise<void> {
         const data = {
             version: TheDb.version,
             tables: {},
         };
 
-        return TheDb.selectAll(`SELECT name FROM sqlite_master WHERE type = 'table' ORDER BY name`, {})
+        return await TheDb.selectAll(`SELECT name FROM sqlite_master WHERE type = 'table' ORDER BY name`, {})
             .then((rows) => {
                 const selects: Array<Promise<Array<{}>>> = [];
                 for (const row of rows) {
@@ -183,13 +186,13 @@ export class TheDb {
             });
     }
 
-    public static resetDbKarma(): Promise<void> {
+    public static async resetDbKarma(): Promise<void> {
         const fromJson = path.join(Settings.dbFolder, `karma-database.init.json`);
 
-        return TheDb.importJson(fromJson, true);
+        return await TheDb.importJson(fromJson, true);
     }
 
-    public static createDb(dbPath: string): Promise<string> {
+    public static async createDb(dbPath: string): Promise<string> {
         dbPath += path.extname(dbPath) === '.db' ? '' : '.db';
 
         // console.log('Creating  databae: ', dbPath);
@@ -197,14 +200,17 @@ export class TheDb {
         const dataPath = path.join(Settings.dbFolder, `database.init.json`);
         const schemaPath = path.join(Settings.dbFolder, `database.db.sql`);
         const schema = fs.readFileSync(schemaPath, { encoding: 'utf8' });
+        const enumSchemaPath = path.join(Settings.dbFolder, `database.db.enums.sql`);
+        const enumSchema = fs.readFileSync(enumSchemaPath, { encoding: 'utf8' });
 
         // Create data directory in userdata folder
         if (!fs.existsSync(path.join(dbPath, '..'))) {
             fs.mkdirSync(path.join(dbPath, '..'));
         }
 
-        return TheDb.getDb(dbPath)
+        return await TheDb.getDb(dbPath)
             .then(() => TheDb.exec(schema))
+            .then(() => TheDb.exec(enumSchema))
             .then(() => TheDb.setPragmaForeignKeys(true))
             .then(() => TheDb.importJson(dataPath, false))
             .then(TheDb.setPragmaVersion)
@@ -214,22 +220,22 @@ export class TheDb {
             });
     }
 
-    public static openDb(dbPath: string): Promise<void> {
+    public static async openDb(dbPath: string): Promise<void> {
         // console.log('Opening database: ', dbPath);
-        return TheDb.getDb(dbPath)
+        return await TheDb.getDb(dbPath)
             .then(() => TheDb.setPragmaForeignKeys(true))
-            .then(TheDb.upgradeDb)
+            .then(() => TheDb.runUpdate(dbPath))
             .then(() => {
                 // console.log('Database opened');
                 return Promise.resolve();
             });
     }
 
-    public static closeDb(): Promise<void> {
+    public static async closeDb(): Promise<void> {
         if (!TheDb.db) {
             return Promise.resolve();
         }
-        return new Promise<void>((resolve, reject) => {
+        return await new Promise<void>((resolve, reject) => {
             TheDb.db.close((err: any) => {
                 // console.log('Closing current Db');
                 if (err) {
@@ -242,8 +248,8 @@ export class TheDb {
         });
     }
 
-    private static getDb(dbPath: string): Promise<void> {
-        return TheDb.closeDb()
+    private static async getDb(dbPath: string): Promise<void> {
+        return await TheDb.closeDb()
             .then(() => {
                 return new Promise<void>((resolve, reject) => {
                     const db = new Database(dbPath, (err: any) => {
@@ -258,8 +264,8 @@ export class TheDb {
             });
     }
 
-    private static upgradeDb(): Promise<void> {
-        return TheDb.getPragmaVersion()
+    private static async upgradeDb(): Promise<void> {
+        return await TheDb.getPragmaVersion()
             .then((version) => {
                 if (version === TheDb.version) {
                     return Promise.resolve();
@@ -283,7 +289,7 @@ export class TheDb {
 
     }
 
-    private static change(sql: string, values: {}): Promise<IDbResult> {
+    private static async change(sql: string, values: {}): Promise<IDbResult> {
         return new Promise<IDbResult>((resolve, reject) => {
             TheDb.db.run(sql, values, function (err: any) {
                 if (err) {
@@ -295,8 +301,8 @@ export class TheDb {
         });
     }
 
-    private static exec(sql: string): Promise<void> {
-        return new Promise<void>((resolve, reject) => {
+    private static async exec(sql: string): Promise<void> {
+        return await new Promise<void>((resolve, reject) => {
             TheDb.db.exec(sql, (err) => {
                 if (err) {
                     reject(err);
@@ -307,8 +313,8 @@ export class TheDb {
         });
     }
 
-    private static getPragmaForeignKeys(): Promise<boolean> {
-        return new Promise<boolean>((resolve, reject) => {
+    private static async getPragmaForeignKeys(): Promise<boolean> {
+        return await new Promise<boolean>((resolve, reject) => {
             TheDb.db.get('PRAGMA foreign_keys', (err, row) => {
                 if (err) {
                     reject(err);
@@ -319,8 +325,8 @@ export class TheDb {
         });
     }
 
-    private static setPragmaForeignKeys(value: boolean): Promise<void> {
-        return new Promise<void>((resolve, reject) => {
+    private static async setPragmaForeignKeys(value: boolean): Promise<void> {
+        return await new Promise<void>((resolve, reject) => {
             TheDb.db.run(`PRAGMA foreign_keys = ${value}`, (err) => {
                 if (err) {
                     reject(err);
@@ -332,8 +338,8 @@ export class TheDb {
         });
     }
 
-    private static getPragmaVersion(): Promise<number> {
-        return new Promise<number>((resolve, reject) => {
+    private static async getPragmaVersion(): Promise<number> {
+        return await new Promise<number>((resolve, reject) => {
             TheDb.db.get('PRAGMA user_version', (err, row) => {
                 if (err) {
                     reject(err);
@@ -344,8 +350,8 @@ export class TheDb {
         });
     }
 
-    private static setPragmaVersion(): Promise<void> {
-        return new Promise<void>((resolve, reject) => {
+    private static async setPragmaVersion(): Promise<void> {
+        return await new Promise<void>((resolve, reject) => {
             TheDb.db.run(`PRAGMA user_version = ${TheDb.version}`, (err) => {
                 if (err) {
                     reject(err);
@@ -356,4 +362,44 @@ export class TheDb {
             });
         });
     }
+
+    public static async runUpdate(dbPath: string): Promise<void> {
+        const dataPath = path.join(Settings.dbFolder, `database.init.json`);
+        const schemaPath = path.join(Settings.dbFolder, `database.db.enums.sql`);
+        const schema = fs.readFileSync(schemaPath, { encoding: 'utf8' });
+        let updateNeeded: boolean = false;
+        await TheDb.checkLocations().then((b) => { updateNeeded = b; });
+        if(updateNeeded) {
+            await TheDb.getDb(dbPath)
+            .then(() => TheDb.exec(schema));
+        }
+    }
+
+    public static async checkLocations(): Promise<boolean> {
+        const sql = `SELECT ( SELECT COUNT(enum_locations.locationId) FROM enum_locations ) AS locationCount, ( SELECT COUNT(enum_territory.territoryId) FROM enum_territory ) AS territoryCount`;
+        const values = { };
+        let updateNeeded: boolean = false;
+          
+        await TheDb.selectAll(sql, values).then((rows: any) => {
+            updateNeeded = false;
+            for (const row of rows) {
+            updateNeeded = fromRow(row);
+            if(updateNeeded == true)
+                break;
+            }
+        });
+      
+        return updateNeeded;
+
+        function fromRow(row: EnumCountEntity): boolean {
+            if(row['locationCount'] != EnumCount.LocationCount)
+                return true;
+            
+            if(row['territoryCount'] != EnumCount.TerritoryCount)
+                return true;
+        
+            return false;
+        }
+    }
 }
+
